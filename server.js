@@ -27,7 +27,7 @@ app.post('/api/reservation/normal', (req, res) => {
     success: true,
     id: entry.id,
     message: 'Réservation normale enregistrée avec succès.',
-    whatsapp: `https://wa.me/212643111622?text=${encodeURIComponent(
+    whatsapp: `https://wa.me/212662191301?text=${encodeURIComponent(
       `Nouvelle réservation normale :\nNom: ${nom}\nTéléphone: ${telephone}\nEmail: ${email}\nPersonnes: ${nombre_personnes}\nDate: ${date}\nExpérience: ${experience}${message ? `\nMessage: ${message}` : ''}`
     )}`
   });
@@ -49,7 +49,7 @@ app.post('/api/reservation/pro', (req, res) => {
     success: true,
     id: entry.id,
     message: 'Réservation professionnelle enregistrée avec succès.',
-    whatsapp: `https://wa.me/212643111622?text=${encodeURIComponent(
+    whatsapp: `https://wa.me/212662191301?text=${encodeURIComponent(
       `Nouvelle réservation PRO :\nAgence: ${agence}\nResponsable: ${responsable}\nTéléphone: ${telephone}\nEmail: ${email}\nType: ${type_groupe}\nVisiteurs: ${nombre_visiteurs}\nDate: ${date}${programme ? `\nProgramme: ${programme}` : ''}`
     )}`
   });
@@ -85,6 +85,32 @@ app.delete('/api/reservation/:id', (req, res) => {
 
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
+app.post('/api/feedback', (req, res) => {
+  const { nom, message, note } = req.body;
+  if (!nom || !message || !note) {
+    return res.status(400).json({ success: false, error: 'Tous les champs sont obligatoires.' });
+  }
+  const data = db.read();
+  if (!data.feedback) data.feedback = [];
+  const entry = { id: Date.now(), nom, message, note: parseInt(note), created_at: new Date().toISOString() };
+  data.feedback.unshift(entry);
+  db.write(data);
+  res.json({ success: true, id: entry.id });
+});
+
+app.get('/api/feedback', (req, res) => {
+  const data = db.read();
+  res.json({ success: true, data: data.feedback || [] });
+});
+
+app.delete('/api/feedback/:id', (req, res) => {
+  const id = Number(req.params.id);
+  const data = db.read();
+  if (data.feedback) data.feedback = data.feedback.filter(e => e.id !== id);
+  db.write(data);
+  res.json({ success: true });
 });
 
 app.listen(PORT, () => {

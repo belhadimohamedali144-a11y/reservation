@@ -71,12 +71,7 @@ width:60px;
 height:60px;
 border-radius:50%;
 border:2px solid #c99a4d;
-background:linear-gradient(135deg,#1a140e,#0a0806);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-color:#c99a4d;
+object-fit:cover;
 }
 
 .logo-text{
@@ -679,6 +674,114 @@ display:block;
 .gallery{grid-template-columns:1fr}
 }
 
+/* ===== FEEDBACK ===== */
+.feedback-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+max-width:900px;
+margin:0 auto;
+align-items:start;
+}
+
+.feedback-form card{
+background:linear-gradient(160deg,#14100a,#0a0806);
+border:1px solid rgba(201,154,77,.3);
+border-radius:12px;
+padding:28px;
+}
+
+.feedback-form h3{
+font-family:'Playfair Display',Georgia,serif;
+color:#d4a75f;
+font-size:20px;
+margin-bottom:16px;
+}
+
+.feedback-form .stars{
+display:flex;
+gap:6px;
+margin-bottom:16px;
+}
+
+.feedback-form .stars button{
+background:none;
+border:none;
+font-size:24px;
+cursor:pointer;
+color:#3b2c18;
+transition:color .2s;
+padding:2px;
+}
+
+.feedback-form .stars button.active,
+.feedback-form .stars button:hover{
+color:#c99a4d;
+}
+
+.feedback-form button[type="submit"]{
+width:100%;
+padding:14px;
+background:linear-gradient(135deg,#c99a4d,#b8862e);
+border:0;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+font-size:14px;
+color:#111;
+transition:all .3s;
+letter-spacing:.5px;
+margin-top:10px;
+}
+
+.feedback-form button[type="submit"]:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 25px rgba(201,154,77,.25);
+}
+
+.feedback-list{
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+.feedback-item{
+background:linear-gradient(160deg,#14100a,#0a0806);
+border:1px solid rgba(201,154,77,.2);
+border-radius:10px;
+padding:20px;
+}
+
+.feedback-item h4{
+color:#e8c887;
+font-size:15px;
+margin-bottom:4px;
+}
+
+.feedback-item .stars-display{
+color:#c99a4d;
+font-size:14px;
+margin-bottom:6px;
+letter-spacing:2px;
+}
+
+.feedback-item p{
+color:#9a8a70;
+font-size:13px;
+line-height:1.6;
+}
+
+.feedback-item .date{
+color:#5a4a30;
+font-size:11px;
+margin-top:8px;
+display:block;
+}
+
+@media(max-width:768px){
+.feedback-grid{grid-template-columns:1fr}
+}
+
 /* ===== FOOTER ===== */
 footer{
 background:#050302;
@@ -823,7 +926,7 @@ section{padding:60px 5%}
 <header>
 
 <div class="logo">
-<div class="logo-img">✦</div>
+<img src="image/artt.jpeg" alt="Arts House Maadid" class="logo-img">
 <div class="logo-text">
 Arts House Maadid
 <span data-i18n="logo-sub">Artisanat marocain • Erfoud</span>
@@ -1004,7 +1107,45 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 
 <div class="guide-call">
 <p data-i18n="guide-p">📞 Vous êtes guide touristique ? Appelez-nous directement pour une réservation immédiate</p>
-<a class="btn" href="tel:+212643111622" data-i18n="guide-btn">Appeler le +212 643-111622</a>
+<a class="btn" href="tel:+212662191301" data-i18n="guide-btn">Appeler le +212 662-191301</a>
+</div>
+
+</section>
+
+<!-- ===== FEEDBACK ===== -->
+<section id="feedback">
+
+<div class="section-ornament">✦ ✦ ✦</div>
+
+<h2 class="title" data-i18n="fb-title">Avis Clients</h2>
+
+<p class="subtitle" data-i18n="fb-sub">Partagez votre expérience et aidez d'autres voyageurs à découvrir notre maison d'artisanat.</p>
+
+<div class="title-decoration">
+<span></span><i>◆</i><span></span>
+</div>
+
+<div class="feedback-grid">
+
+<div class="feedback-form">
+<h3 data-i18n="fb-form-title">Laissez un avis</h3>
+<form id="formFeedback">
+<div class="stars" id="starContainer">
+<button type="button" data-star="1">★</button>
+<button type="button" data-star="2">★</button>
+<button type="button" data-star="3">★</button>
+<button type="button" data-star="4">★</button>
+<button type="button" data-star="5">★</button>
+</div>
+<input name="nom" data-i18n-placeholder="fb-nom" placeholder="Votre nom" required style="margin-bottom:12px">
+<textarea name="message" rows="3" data-i18n-placeholder="fb-msg" placeholder="Votre avis" required style="margin-bottom:12px"></textarea>
+<input type="hidden" name="note" id="noteValue" value="0">
+<button type="submit" data-i18n="fb-submit">Envoyer mon avis</button>
+</form>
+</div>
+
+<div class="feedback-list" id="feedbackList"></div>
+
 </div>
 
 </section>
@@ -1032,7 +1173,7 @@ Arts House Maadid
 <div>
 <h3 data-i18n="footer-contact-title">Contact</h3>
 <p>📍 <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
-<p>📞 +212 6 43 11 16 22</p>
+<p>📞 +212 6 62 19 13 01</p>
 <p>✉️ contact@artshousemaadid.com</p>
 <p>🕐 <span data-i18n="footer-hours">Lun - Sam : 9h - 19h</span></p>
 </div>
@@ -1146,14 +1287,16 @@ const i18n = {
     'testimonial-p':'« Un accueil chaleureux et un savoir-faire exceptionnel. Une immersion totale dans l\'artisanat marocain authentique. »',
     'testimonial-cite':'— Fatima Z., Voyageuse',
     'guide-p':'📞 Vous êtes guide touristique ? Appelez-nous directement pour une réservation immédiate',
-    'guide-btn':'Appeler le +212 643-111622',
+    'guide-btn':'Appeler le +212 662-191301',
     'footer-desc':'Espaces traditionnels dédiés à la préservation et la promotion de l\'artisanat marocain. Objets du Sahara, céramique, tapis et visites guidées.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Maroc','footer-hours':'Lun - Sam : 9h - 19h',
     'footer-social-title':'Suivez-nous',
     'footer-copy':'© 2026 Arts House Maadid — Tous droits réservés',
     'footer-tag':'Artisanat marocain traditionnel',
-    'toast-ok':'✓ Réservation envoyée avec succès','toast-err':'✗ Erreur'
+    'toast-ok':'✓ Réservation envoyée avec succès','toast-err':'✗ Erreur',
+    'fb-title':'Avis Clients','fb-sub':'Partagez votre expérience et aidez d\'autres voyageurs à découvrir notre maison d\'artisanat.',
+    'fb-form-title':'Laissez un avis','fb-nom':'Votre nom','fb-msg':'Votre avis','fb-submit':'Envoyer mon avis'
   },
   EN: {
     'logo-sub':'Moroccan crafts • Erfoud',
@@ -1178,14 +1321,16 @@ const i18n = {
     'testimonial-p':'« A warm welcome and exceptional know-how. A total immersion in authentic Moroccan craftsmanship. »',
     'testimonial-cite':'— Fatima Z., Traveler',
     'guide-p':'📞 Are you a tour guide? Call us directly for an immediate booking',
-    'guide-btn':'Call +212 643-111622',
+    'guide-btn':'Call +212 662-191301',
     'footer-desc':'Traditional spaces dedicated to preserving and promoting Moroccan craftsmanship. Sahara artifacts, ceramics, rugs and guided tours.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Morocco','footer-hours':'Mon - Sat : 9am - 7pm',
     'footer-social-title':'Follow us',
     'footer-copy':'© 2026 Arts House Maadid — All rights reserved',
     'footer-tag':'Traditional Moroccan craftsmanship',
-    'toast-ok':'✓ Booking sent successfully','toast-err':'✗ Error'
+    'toast-ok':'✓ Booking sent successfully','toast-err':'✗ Error',
+    'fb-title':'Client Reviews','fb-sub':'Share your experience and help other travelers discover our craft house.',
+    'fb-form-title':'Leave a review','fb-nom':'Your name','fb-msg':'Your review',    'fb-submit':'Send review'
   },
   ES: {
     'logo-sub':'Artesanía marroquí • Erfoud',
@@ -1210,14 +1355,16 @@ const i18n = {
     'testimonial-p':'« Una cálida bienvenida y un saber hacer excepcional. Una inmersión total en la auténtica artesanía marroquí. »',
     'testimonial-cite':'— Fatima Z., Viajera',
     'guide-p':'📞 ¿Es guía turístico? Llámenos directamente para una reserva inmediata',
-    'guide-btn':'Llamar al +212 643-111622',
+    'guide-btn':'Llamar al +212 662-191301',
     'footer-desc':'Espacios tradicionales dedicados a la preservación y promoción de la artesanía marroquí. Objetos del Sáhara, cerámica, alfombras y visitas guiadas.',
     'footer-nav-title':'Navegación','footer-contact-title':'Contacto',
     'footer-addr':'Erfoud, Marruecos','footer-hours':'Lun - Sáb : 9h - 19h',
     'footer-social-title':'Síguenos',
     'footer-copy':'© 2026 Arts House Maadid — Todos los derechos reservados',
     'footer-tag':'Artesanía marroquí tradicional',
-    'toast-ok':'✓ Reserva enviada con éxito','toast-err':'✗ Error'
+    'toast-ok':'✓ Reserva enviada con éxito','toast-err':'✗ Error',
+    'fb-title':'Opiniones de Clientes','fb-sub':'Comparta su experiencia y ayude a otros viajeros a descubrir nuestra casa de artesanía.',
+    'fb-form-title':'Deje una opinión','fb-nom':'Su nombre','fb-msg':'Su opinión',    'fb-submit':'Enviar opinión'
   }
 };
 
@@ -1247,6 +1394,60 @@ document.querySelectorAll('.lang-switch a').forEach(a => {
 
 const saved = localStorage.getItem('lang') || 'FR';
 setLang(saved);
+
+// ===== FEEDBACK =====
+let fbNote = 0;
+document.querySelectorAll('#starContainer button').forEach(b => {
+  b.addEventListener('click', () => {
+    fbNote = parseInt(b.dataset.star);
+    document.getElementById('noteValue').value = fbNote;
+    document.querySelectorAll('#starContainer button').forEach(s => {
+      s.classList.toggle('active', parseInt(s.dataset.star) <= fbNote);
+    });
+  });
+});
+
+document.getElementById('formFeedback')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (!fbNote) { showToast('Veuillez sélectionner une note', true); return; }
+  const fd = new FormData(this);
+  const data = Object.fromEntries(fd);
+  const res = await fetch('/api/feedback', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  });
+  const json = await res.json();
+  if (json.success) {
+    showToast(i18n[localStorage.getItem('lang')||'FR']['toast-ok']);
+    this.reset();
+    fbNote = 0;
+    document.querySelectorAll('#starContainer button').forEach(s => s.classList.remove('active'));
+    loadFeedback();
+  } else {
+    showToast(i18n[localStorage.getItem('lang')||'FR']['toast-err'] + ': ' + json.error, true);
+  }
+});
+
+async function loadFeedback() {
+  const el = document.getElementById('feedbackList');
+  if (!el) return;
+  const r = await fetch('/api/feedback');
+  const json = await r.json();
+  if (!json.success || !json.data.length) {
+    el.innerHTML = '<div class="feedback-item"><p style="color:#5a4a30">Aucun avis pour le moment. Soyez le premier !</p></div>';
+    return;
+  }
+  el.innerHTML = json.data.map(f => `
+    <div class="feedback-item">
+      <h4>${esc(f.nom)}</h4>
+      <div class="stars-display">${'★'.repeat(f.note)}${'☆'.repeat(5-f.note)}</div>
+      <p>${esc(f.message)}</p>
+      <span class="date">${new Date(f.created_at).toLocaleDateString()}</span>
+    </div>
+  `).join('');
+}
+loadFeedback();
 </script>
 
 </body>
