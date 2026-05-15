@@ -1,0 +1,51 @@
+{
+  "normales": [
+    {
+      "id": 1778853406864,
+      "nom": "BELHADI",
+      "telephone": "0659295708",
+      "email": "alibelhadi2020@gmail.com",
+      "nombre_personnes": "1-10",
+      "date": "0112-12-13",
+      "experience": "visite_privee",
+      "message": "hggyugv",
+      "created_at": "2026-05-15T13:56:46.864Z"
+    },
+    {
+      "id": 1778853340744,
+      "nom": "BELHADI",
+      "telephone": "06565",
+      "email": "alibelhadi2020@gmail.com",
+      "nombre_personnes": "1-10",
+      "date": "2005-04-05",
+      "experience": "decouverte_artisanale",
+      "message": "alij",
+      "created_at": "2026-05-15T13:55:40.744Z"
+    },
+    {
+      "id": 1778852925135,
+      "nom": "jyfgyjf",
+      "telephone": "kugkub",
+      "email": "alibelhadi2020@gmail.com",
+      "nombre_personnes": "10-50",
+      "date": "64564-06-06",
+      "experience": "visite_privee",
+      "message": "kugufg",
+      "created_at": "2026-05-15T13:48:45.135Z"
+    }
+  ],
+  "professionnelles": [
+    {
+      "id": 1778850758511,
+      "agence": "Voyage SARL",
+      "responsable": "Ahmed",
+      "telephone": "+212600000001",
+      "email": "ahmed@test.com",
+      "type_groupe": "agence",
+      "nombre_visiteurs": "20-50",
+      "date": "2026-07-01",
+      "programme": "Visite guidee",
+      "created_at": "2026-05-15T13:12:38.511Z"
+    }
+  ]
+}

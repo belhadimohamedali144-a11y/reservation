@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arts House Maadid | Réservation</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#080706;
+color:#fff;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+z-index:99;
+background:rgba(0,0,0,.84);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:12px 6%;
+border-bottom:1px solid #6f4d22;
+backdrop-filter:blur(8px);
+}
+
+.logo img{
+width:78px;
+height:78px;
+object-fit:cover;
+border-radius:8px;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+margin:0 14px;
+font-size:14px;
+}
+
+.btn{
+background:#c99a4d;
+color:#111;
+text-decoration:none;
+padding:13px 22px;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+border:1px solid #e3bd79;
+}
+
+.btn-dark{
+background:transparent;
+color:#fff;
+border:1px solid #c99a4d;
+}
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.30)),
+url('https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=1800');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:120px 6% 60px;
+}
+
+.hero h1{
+font-family:Georgia,serif;
+font-size:62px;
+line-height:1.08;
+margin-bottom:22px;
+max-width:780px;
+}
+
+.gold{
+color:#d4a75f;
+}
+
+.hero p{
+max-width:640px;
+font-size:20px;
+line-height:1.7;
+color:#eee;
+margin-bottom:28px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+background:#111;
+padding:28px 6%;
+border-top:1px solid #4b351b;
+border-bottom:1px solid #4b351b;
+}
+
+.feature{
+text-align:center;
+border-right:1px solid #3b2c18;
+padding:8px;
+}
+
+.feature:last-child{
+border-right:0;
+}
+
+.feature b{
+color:#d4a75f;
+}
+
+section{
+padding:75px 6%;
+}
+
+.title{
+text-align:center;
+font-family:Georgia,serif;
+font-size:38px;
+margin-bottom:16px;
+}
+
+.subtitle{
+text-align:center;
+color:#cfc6b3;
+max-width:780px;
+margin:0 auto 38px;
+line-height:1.7;
+}
+
+.title:after{
+content:"";
+display:block;
+width:80px;
+height:2px;
+background:#c99a4d;
+margin:14px auto;
+}
+
+.reservation-grid{
+display:grid;
+grid-template-columns:.9fr 1.1fr;
+gap:28px;
+align-items:stretch;
+}
+
+.reserve-card{
+position:relative;
+background:#111;
+border:1px solid rgba(201,154,77,.48);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 22px 60px rgba(0,0,0,.35);
+}
+
+.reserve-card.private{
+padding:30px;
+}
+
+.reserve-card.pro{
+padding:34px;
+background:linear-gradient(135deg,#14110c,#050505 60%);
+border:1px solid #d4a75f;
+}
+
+.badge{
+display:inline-block;
+background:rgba(212,167,95,.16);
+border:1px solid #d4a75f;
+color:#e8c887;
+padding:8px 13px;
+border-radius:999px;
+font-size:13px;
+margin-bottom:16px;
+}
+
+.reserve-card h2{
+font-family:Georgia,serif;
+color:#d4a75f;
+font-size:30px;
+margin-bottom:10px;
+}
+
+.reserve-card p{
+color:#cfc6b3;
+line-height:1.65;
+margin-bottom:22px;
+}
+
+.input-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+margin-bottom:13px;
+background:#080808;
+border:1px solid #5b4525;
+border-radius:8px;
+color:white;
+font-size:14px;
+}
+
+textarea{
+resize:vertical;
+}
+
+.reserve-card button{
+width:100%;
+padding:15px;
+background:#c99a4d;
+border:0;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+margin-top:4px;
+}
+
+.button-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.button-row button:last-child{
+background:#101010;
+color:#e8c887;
+border:1px solid #c99a4d;
+}
+
+.pro-points{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:18px 0 22px;
+}
+
+.pro-points span{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(201,154,77,.25);
+padding:11px;
+border-radius:9px;
+color:#ddd;
+font-size:13px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
+}
+
+.card{
+background:#111;
+border:1px solid rgba(201,154,77,.45);
+border-radius:14px;
+overflow:hidden;
+}
+
+.card img{
+width:100%;
+height:230px;
+object-fit:cover;
+}
+
+.card div{
+padding:20px;
+}
+
+.card h3{
+color:#d4a75f;
+font-family:Georgia,serif;
+margin-bottom:10px;
+}
+
+.card p{
+color:#ccc;
+line-height:1.6;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:12px;
+border:1px solid rgba(201,154,77,.45);
+}
+
+footer{
+background:#050505;
+border-top:1px solid #302515;
+padding:40px 6%;
+display:grid;
+grid-template-columns:1.3fr 1fr 1fr 1fr;
+gap:25px;
+color:#ccc;
+}
+
+footer h3{
+color:#d4a75f;
+font-family:Georgia,serif;
+margin-bottom:10px;
+}
+
+footer p{
+line-height:1.8;
+}
+
+@media(max-width:900px){
+
+nav{
+display:none;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.features,
+.reservation-grid,
+.cards,
+footer,
+.input-row,
+.button-row{
+grid-template-columns:1fr;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+<img src="logo.png">
+</div>
+
+<nav>
+<a href="#">Accueil</a>
+<a href="#">Expériences</a>
+<a href="#">Réservation</a>
+<a href="#">Contact</a>
+</nav>
+
+<a class="btn" href="https://wa.me/212643111622">
+Réserver
+</a>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>
+Réservez votre
+<span class="gold">expérience authentique</span>
+à Arts House Maadid
+</h1>
+
+<p>
+Artisanat marocain,
+céramique,
+objets du Sahara
+et visites privées dans un espace traditionnel au cœur d'Erfoud.
+</p>
+
+<a class="btn" href="#reservation">
+Réserver maintenant
+</a>
+
+<a class="btn btn-dark" href="#">
+Google Maps
+</a>
+
+</div>
+
+</section>
+
+<div class="features">
+
+<div class="feature">
+<b>1 à 150 personnes</b><br>
+Réservation normale
+</div>
+
+<div class="feature">
+<b>Guides & agences</b><br>
+Réservation professionnelle
+</div>
+
+<div class="feature">
+<b>FR • EN • ES</b><br>
+Accueil multilingue
+</div>
+
+<div class="feature">
+<b>WhatsApp / Email</b><br>
+Réponse rapide
+</div>
+
+</div>
+
+<section id="reservation">
+
+<h2 class="title">
+Réservation
+</h2>
+
+<p class="subtitle">
+Choisissez le type de réservation adapté à votre visite.
+</p>
+
+<div class="reservation-grid">
+
+<form class="reserve-card private" id="formNormal">
+
+<span class="badge">
+Réservation rapide
+</span>
+
+<h2>
+Réservation normale
+</h2>
+
+<p>
+Pour visiteurs individuels,
+familles,
+amis et groupes de 1 à 150 personnes.
+</p>
+
+<input name="nom" placeholder="Nom complet" required>
+
+<div class="input-row">
+
+<input name="telephone" placeholder="Téléphone / WhatsApp" required>
+
+<input name="email" type="email" placeholder="Email" required>
+
+</div>
+
+<div class="input-row">
+
+<select name="nombre_personnes" required>
+<option value="">Nombre de personnes</option>
+<option value="1-10">1 - 10</option>
+<option value="10-50">10 - 50</option>
+<option value="50-100">50 - 100</option>
+<option value="100-150">100 - 150</option>
+</select>
+
+<input name="date" type="date" required>
+
+</div>
+
+<select name="experience" required>
+<option value="">Type d'expérience</option>
+<option value="visite_privee">Visite privée</option>
+<option value="decouverte_artisanale">Découverte artisanale</option>
+<option value="photos_souvenirs">Photos souvenirs</option>
+<option value="the_marocain">Thé marocain</option>
+</select>
+
+<textarea name="message" rows="5" placeholder="Message optionnel"></textarea>
+
+<button type="submit">
+Réserver
+</button>
+
+</form>
+
+<form class="reserve-card pro" id="formPro">
+
+<span class="badge">
+Espace professionnel
+</span>
+
+<h2>
+Guides & Agences Touristiques
+</h2>
+
+<p>
+Réservation spéciale pour guides,
+agences de voyage,
+groupes organisés et événements.
+</p>
+
+<div class="pro-points">
+
+<span>
+✓ Groupe jusqu'à 150 personnes
+</span>
+
+<span>
+✓ Organisation sur mesure
+</span>
+
+<span>
+✓ Accueil professionnel
+</span>
+
+<span>
+✓ Devis rapide
+</span>
+
+</div>
+
+<input name="agence" placeholder="Nom de l'agence / guide" required>
+
+<div class="input-row">
+
+<input name="responsable" placeholder="Nom du responsable" required>
+
+<input name="telephone" placeholder="Téléphone professionnel" required>
+
+</div>
+
+<div class="input-row">
+
+<input name="email" type="email" placeholder="Email professionnel" required>
+
+<select name="type_groupe" required>
+<option value="">Type de groupe</option>
+<option value="guide">Guide touristique</option>
+<option value="agence">Agence de voyage</option>
+<option value="groupe">Groupe touristique</option>
+<option value="evenement">Événement privé</option>
+</select>
+
+</div>
+
+<div class="input-row">
+
+<select name="nombre_visiteurs" required>
+<option value="">Nombre de visiteurs</option>
+<option value="1-20">1 - 20</option>
+<option value="20-50">20 - 50</option>
+<option value="50-100">50 - 100</option>
+<option value="100-150">100 - 150</option>
+</select>
+
+<input name="date" type="date" required>
+
+</div>
+
+<textarea name="programme" rows="5" placeholder="Programme souhaité / demande spéciale"></textarea>
+
+<div class="button-row">
+
+<button type="submit">
+Demander un devis
+</button>
+
+<button type="button" onclick="window.open('https://wa.me/212643111622','_blank')">
+Contact WhatsApp Pro
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+<div id="toast"></div>
+
+<style>
+#toast{position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);background:#1a1a0e;border:1px solid #c99a4d;padding:16px 32px;border-radius:10px;color:#e8c887;font-size:15px;z-index:999;transition:bottom .4s;min-width:280px;text-align:center}
+#toast.show{bottom:30px}
+#toast.error{border-color:#6a2a2a;color:#e66;background:#1a0e0e}
+</style>
+
+<script>
+document.getElementById('formNormal').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const data = Object.fromEntries(fd);
+  const res = await fetch('/api/reservation/normal', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  });
+  const json = await res.json();
+  if (json.success) {
+    showToast('Réservation envoyée ✓');
+    this.reset();
+  } else {
+    showToast('Erreur : ' + json.error, true);
+  }
+});
+
+document.getElementById('formPro').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const data = Object.fromEntries(fd);
+  const res = await fetch('/api/reservation/pro', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  });
+  const json = await res.json();
+  if (json.success) {
+    showToast('Demande envoyée ✓');
+    this.reset();
+  } else {
+    showToast('Erreur : ' + json.error, true);
+  }
+});
+
+function showToast(msg, err) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = err ? 'show error' : 'show';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Arts House Maadid</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#080706;color:#fff;padding:30px 5%}
+h1{color:#d4a75f;font-family:Georgia,serif;margin-bottom:6px}
+.sub{color:#cfc6b3;margin-bottom:25px}
+.tabs{display:flex;gap:10px;margin-bottom:20px}
+.tabs button{padding:10px 20px;background:#111;border:1px solid #5b4525;border-radius:8px;color:#fff;cursor:pointer;font-size:14px}
+.tabs button.active{background:#c99a4d;color:#111;border-color:#c99a4d;font-weight:bold}
+.stats{display:flex;gap:15px;margin-bottom:25px}
+.stat{background:#111;border:1px solid rgba(201,154,77,.35);border-radius:10px;padding:15px 25px}
+.stat b{color:#d4a75f;font-size:22px}
+.stat p{color:#aaa;font-size:13px;margin-top:3px}
+table{width:100%;border-collapse:collapse;background:#111;border-radius:12px;overflow:hidden}
+th{background:#1a140e;color:#d4a75f;padding:12px 14px;text-align:left;font-size:13px;border-bottom:1px solid #5b4525}
+td{padding:11px 14px;border-bottom:1px solid #2a1f10;font-size:13px;color:#ddd}
+tr:hover{background:#1a140e}
+.badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;background:rgba(212,167,95,.16);border:1px solid #d4a75f;color:#e8c887}
+.empty{text-align:center;color:#666;padding:40px;font-style:italic}
+.actions{display:flex;gap:6px}
+.actions button{padding:5px 10px;border-radius:6px;cursor:pointer;font-size:11px;border:1px solid}
+.btn-del{background:#3a1a1a;border-color:#6a2a2a;color:#e66}
+.btn-del:hover{background:#5a2a2a}
+.btn-wa{background:#1a3a1a;border-color:#2a6a2a;color:#6e6}
+.btn-wa:hover{background:#2a5a2a}
+</style>
+</head>
+<body>
+
+<h1>🛡️ Administration</h1>
+<p class="sub">Gestion des réservations — Arts House Maadid</p>
+
+<div class="stats">
+  <div class="stat"><b id="countN">0</b><p>Réservations normales</p></div>
+  <div class="stat"><b id="countP">0</b><p>Réservations professionnelles</p></div>
+  <div class="stat"><b id="countTotal">0</b><p>Total</p></div>
+</div>
+
+<div id="msg" style="display:none;background:#1a2a1a;border:1px solid #2a6a2a;padding:12px 18px;border-radius:8px;color:#6e6;margin-bottom:15px;font-size:14px"></div>
+
+<div class="tabs">
+  <button class="active" onclick="switchTab('normales')">Réservations normales</button>
+  <button onclick="switchTab('professionnelles')">Réservations professionnelles</button>
+</div>
+
+<div id="tabContent"></div>
+
+<script>
+let currentTab = 'normales';
+let data = { normales: [], professionnelles: [] };
+
+async function load() {
+  const r = await fetch('/api/reservations');
+  data = (await r.json());
+  render();
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tabs button').forEach((b,i) => b.classList.toggle('active', (i===0 && tab==='normales') || (i===1 && tab==='professionnelles')));
+  render();
+}
+
+function render() {
+  document.getElementById('countN').textContent = data.normales.length;
+  document.getElementById('countP').textContent = data.professionnelles.length;
+  document.getElementById('countTotal').textContent = data.normales.length + data.professionnelles.length;
+
+  const list = currentTab === 'normales' ? data.normales : data.professionnelles;
+  const container = document.getElementById('tabContent');
+
+  if (!list.length) {
+    container.innerHTML = '<div class="empty">Aucune réservation pour le moment.</div>';
+    return;
+  }
+
+  if (currentTab === 'normales') {
+    container.innerHTML = `<table>
+      <thead><tr>
+        <th>ID</th><th>Nom</th><th>Téléphone</th><th>Email</th><th>Personnes</th><th>Date</th><th>Expérience</th><th>Message</th><th>Date de réservation</th><th></th>
+      </tr></thead><tbody>
+      ${list.map(e => `<tr>
+        <td>${e.id}</td>
+        <td>${esc(e.nom)}</td>
+        <td>${esc(e.telephone)}</td>
+        <td>${esc(e.email)}</td>
+        <td>${esc(e.nombre_personnes)}</td>
+        <td>${esc(e.date)}</td>
+        <td><span class="badge">${esc(e.experience)}</span></td>
+        <td>${esc(e.message||'-')}</td>
+        <td>${new Date(e.created_at).toLocaleString('fr-FR')}</td>
+        <td class="actions">
+          <button class="btn-wa" onclick="cancelWA(${e.id})" title="Annuler + WhatsApp">📱</button>
+          <button class="btn-del" onclick="remove(${e.id})" title="Supprimer">✕</button>
+        </td>
+      </tr>`).join('')}
+      </tbody></table>`;
+  } else {
+    container.innerHTML = `<table>
+      <thead><tr>
+        <th>ID</th><th>Agence</th><th>Responsable</th><th>Téléphone</th><th>Email</th><th>Type groupe</th><th>Visiteurs</th><th>Date</th><th>Programme</th><th>Date de réservation</th><th></th>
+      </tr></thead><tbody>
+      ${list.map(e => `<tr>
+        <td>${e.id}</td>
+        <td>${esc(e.agence)}</td>
+        <td>${esc(e.responsable)}</td>
+        <td>${esc(e.telephone)}</td>
+        <td>${esc(e.email)}</td>
+        <td><span class="badge">${esc(e.type_groupe)}</span></td>
+        <td>${esc(e.nombre_visiteurs)}</td>
+        <td>${esc(e.date)}</td>
+        <td>${esc(e.programme||'-')}</td>
+        <td>${new Date(e.created_at).toLocaleString('fr-FR')}</td>
+        <td class="actions">
+          <button class="btn-wa" onclick="cancelWA(${e.id})" title="Annuler + WhatsApp">📱</button>
+          <button class="btn-del" onclick="remove(${e.id})" title="Supprimer">✕</button>
+        </td>
+      </tr>`).join('')}
+      </tbody></table>`;
+  }
+}
+
+function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+async function cancelWA(id) {
+  if (!confirm('Annuler cette réservation et notifier le client via WhatsApp ?')) return;
+  const r = await fetch('/api/reservation/' + id, { method: 'DELETE' });
+  const json = await r.json();
+  if (json.whatsapp) {
+    window.open(json.whatsapp, '_blank');
+    showMsg(`Réservation annulée. WhatsApp ouvert pour ${json.client}`);
+  } else {
+    showMsg('Réservation supprimée (pas de téléphone client).');
+  }
+  load();
+}
+
+async function remove(id) {
+  if (!confirm('Supprimer cette réservation sans notification ?')) return;
+  await fetch('/api/reservation/' + id, { method: 'DELETE' });
+  showMsg('Réservation supprimée.');
+  load();
+}
+
+function showMsg(t) {
+  const d = document.getElementById('msg');
+  d.textContent = t;
+  d.style.display = 'block';
+  clearTimeout(d._t);
+  d._t = setTimeout(() => d.style.display = 'none', 4000);
+}
+
+load();
+</script>
+</body>
+</html>
