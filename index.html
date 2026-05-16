@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arts House Maadid | Artisanat Marocain & Réservation</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JV5DJR8E81"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JV5DJR8E81');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -1237,6 +1245,15 @@ document.getElementById('formNormal').addEventListener('submit', async function(
   if (json.success) {
     const lang = localStorage.getItem('lang') || 'FR';
     showToast(i18n[lang]['toast-ok']);
+    if (typeof gtag === 'function') {
+      gtag('event', 'nouvelle_reservation', {
+        'nom': data.nom,
+        'email': data.email,
+        'telephone': data.telephone,
+        'nombre_personnes': data.nombre_personnes,
+        'experience': data.experience
+      });
+    }
     this.reset();
   } else {
     showToast(i18n[localStorage.getItem('lang')||'FR']['toast-err'] + ': ' + json.error, true);
