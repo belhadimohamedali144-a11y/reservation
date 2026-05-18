@@ -471,6 +471,15 @@ border-color:rgba(201,154,77,.6);
 box-shadow:0 22px 60px rgba(0,0,0,.5),0 0 30px rgba(201,154,77,.05);
 }
 
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.reserve-card{
+animation:fadeInUp .6s ease both;
+}
+
 .reserve-card.private{
 padding:32px;
 }
@@ -554,6 +563,26 @@ letter-spacing:.5px;
 transform:translateY(-2px);
 box-shadow:0 8px 25px rgba(201,154,77,.25);
 }
+
+.reserve-card button[type="submit"]:disabled{
+opacity:.55;
+cursor:not-allowed;
+transform:none;
+box-shadow:none;
+}
+
+.spinner{
+display:inline-block;
+width:16px;height:16px;
+border:2px solid rgba(0,0,0,.2);
+border-top-color:#111;
+border-radius:50%;
+animation:spin .6s linear infinite;
+vertical-align:middle;
+margin-right:8px;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* ===== TESTIMONIAL ===== */
 .testimonial{
@@ -680,6 +709,25 @@ display:block;
 
 @media(max-width:768px){
 .gallery{grid-template-columns:1fr}
+}
+
+/* ===== LOCALISATION ===== */
+#localisation{
+background:linear-gradient(180deg,#080706 0%,#0d0a06 50%,#080706 100%);
+}
+
+.map-container{
+max-width:800px;
+margin:0 auto;
+padding:0 20px;
+}
+
+.map-container iframe{
+width:100%;
+height:400px;
+border-radius:12px;
+border:1px solid rgba(201,154,77,.3);
+box-shadow:0 8px 30px rgba(0,0,0,.4);
 }
 
 /* ===== FEEDBACK ===== */
@@ -905,9 +953,16 @@ display:none;
 .hero h1{font-size:42px}
 .hero p{font-size:16px}
 
-.features,
+.features{
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
 .reservation-grid,
-.footer-grid,
+.footer-grid{
+grid-template-columns:1fr;
+}
+
 .input-row{
 grid-template-columns:1fr;
 }
@@ -918,12 +973,32 @@ grid-template-columns:1fr;
 
 .reserve-card.private{padding:24px}
 
+.map-container iframe{height:280px}
+
 }
 
-@media(max-width:480px){
-.hero h1{font-size:32px}
+@media(max-width:600px){
+.features{
+grid-template-columns:1fr;
+gap:12px;
+padding:24px 5%;
+}
+.hero h1{font-size:34px}
+.hero{padding:100px 5% 50px}
 section{padding:60px 5%}
-.title{font-size:30px}
+.title{font-size:32px}
+.subtitle{font-size:14px;margin-bottom:30px}
+.reserve-card.private{padding:18px}
+.map-container iframe{height:220px}
+}
+
+@media(max-width:400px){
+.hero h1{font-size:26px}
+section{padding:40px 4%}
+.title{font-size:26px}
+.subtitle{font-size:13px}
+.map-container iframe{height:180px}
+.gallery{grid-template-columns:1fr}
 }
 
 </style>
@@ -980,7 +1055,7 @@ Plongez au cœur de l'artisanat marocain : céramique traditionnelle, objets du 
 
 <div class="hero-actions">
 <a class="btn" href="#reservation" data-i18n="hero-btn">Réserver maintenant</a>
-<a class="btn btn-dark" href="#" data-i18n="hero-maps">Google Maps</a>
+<a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=ARTS+HOUSE+MAADIDE+Erfoud" target="_blank" rel="noopener" data-i18n="hero-maps">Google Maps</a>
 </div>
 
 <div class="hero-ornament" data-i18n="hero-ornament">Art du savoir-faire marocain</div>
@@ -1120,6 +1195,30 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 
 </section>
 
+<!-- ===== LOCALISATION ===== -->
+<section id="localisation">
+
+<div class="section-ornament">✦ ✦ ✦</div>
+
+<h2 class="title">Notre Localisation</h2>
+
+<p class="subtitle">Visitez ARTS HOUSE MAADIDE — Erfoud</p>
+
+<div class="title-decoration">
+<span></span><i>◆</i><span></span>
+</div>
+
+<div class="map-container">
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.5323984606214!2d-4.2185001!3d31.4665748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdf0204618a995db%3A0xb013e04043fd2dfa!2sARTS%20HOUSE%20MAADIDE!5e0!3m2!1sfr!2sma!4v1715978000000!5m2!1sfr!2sma"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+
+</section>
+
 <!-- ===== FEEDBACK ===== -->
 <section id="feedback">
 
@@ -1234,8 +1333,13 @@ box-shadow:0 8px 30px rgba(0,0,0,.5);
 
 document.getElementById('formNormal').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const btn = this.querySelector('button[type="submit"]');
+  const origText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
   const fd = new FormData(this);
   const data = Object.fromEntries(fd);
+  try {
   const res = await fetch('/api/reservation/normal', {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
@@ -1257,6 +1361,12 @@ document.getElementById('formNormal').addEventListener('submit', async function(
     this.reset();
   } else {
     showToast(i18n[localStorage.getItem('lang')||'FR']['toast-err'] + ': ' + json.error, true);
+  }
+  } catch (err) {
+    showToast('Erreur réseau', true);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = origText;
   }
 });
 
