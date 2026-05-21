@@ -18,52 +18,48 @@ app.use(express.static(path.join(__dirname)));
    AUTH — Seed & Login (public)
    ============================================================ */
 
-app.get('/api/seed', (req, res) => {
-  const data = db.read();
-  if (data.admin) {
-    return res.json({ success: false, message: 'Un admin existe déjà. Supprimez le champ "admin" du db.json pour recréer.' });
+app.get('/api/seed', async (req, res) => {
+  const result = await db.query('SELECT id FROM admin LIMIT 1');
+  if (result.rows.length > 0) {
+    return res.json({ success: false, message: 'Un admin existe déjà. Supprimez la table admin pour recréer.' });
   }
-  data.admin = {
-    email: 'admin@artshousemaadid.com',
-    password: hashPassword('admin123'),
-    name: 'Administrateur'
-  };
-  db.write(data);
+  await db.query(
+    'INSERT INTO admin (email, password, name) VALUES ($1, $2, $3)',
+    ['admin@artshousemaadid.com', hashPassword('admin123'), 'Administrateur']
+  );
   res.json({ success: true, message: 'Admin créé — email: admin@artshousemaadid.com / mdp: admin123' });
 });
 
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ success: false, error: 'Email et mot de passe requis.' });
   }
-  const data = db.read();
-  if (!data.admin) {
+  const result = await db.query('SELECT * FROM admin WHERE email = $1', [email]);
+  const admin = result.rows[0];
+  if (!admin) {
     return res.status(503).json({ success: false, error: 'Aucun admin configuré. Appelez GET /api/seed une première fois.' });
   }
-  if (email !== data.admin.email || !checkPassword(password, data.admin.password)) {
+  if (!checkPassword(password, admin.password)) {
     return res.status(401).json({ success: false, error: 'Identifiants incorrects.' });
   }
-  const token = generateToken({ email: data.admin.email, name: data.admin.name });
-  res.json({ success: true, token, name: data.admin.name });
+  const token = generateToken({ email: admin.email, name: admin.name });
+  res.json({ success: true, token, name: admin.name });
 });
 
 /* ============================================================
    ADMIN ROUTES — protégées par JWT
    ============================================================ */
 
-app.get('/api/reservations', authMiddleware, (req, res) => {
-  const data = db.read();
-  res.json({ success: true, normales: data.normales || [] });
+app.get('/api/reservations', authMiddleware, async (req, res) => {
+  const result = await db.query("SELECT * FROM reservations WHERE type = 'normale' ORDER BY created_at DESC");
+  res.json({ success: true, normales: result.rows });
 });
 
-app.delete('/api/reservation/:id', authMiddleware, (req, res) => {
+app.delete('/api/reservation/:id', authMiddleware, async (req, res) => {
   const id = Number(req.params.id);
-  const data = db.read();
-  let found = (data.normales || []).find(e => e.id === id) || (data.professionnelles || []).find(e => e.id === id);
-  data.normales = (data.normales || []).filter(e => e.id !== id);
-  if (data.professionnelles) data.professionnelles = data.professionnelles.filter(e => e.id !== id);
-  db.write(data);
+  const result = await db.query('DELETE FROM reservations WHERE id = $1 RETURNING *', [id]);
+  const found = result.rows[0];
   if (found) {
     const nom = found.nom || found.agence || found.responsable || 'Client';
     const tel = found.telephone || '';
@@ -78,16 +74,14 @@ app.delete('/api/reservation/:id', authMiddleware, (req, res) => {
   }
 });
 
-app.get('/api/feedback', authMiddleware, (req, res) => {
-  const data = db.read();
-  res.json({ success: true, data: data.feedback || [] });
+app.get('/api/feedback', authMiddleware, async (req, res) => {
+  const result = await db.query('SELECT * FROM feedback ORDER BY created_at DESC');
+  res.json({ success: true, data: result.rows });
 });
 
-app.delete('/api/feedback/:id', authMiddleware, (req, res) => {
+app.delete('/api/feedback/:id', authMiddleware, async (req, res) => {
   const id = Number(req.params.id);
-  const data = db.read();
-  if (data.feedback) data.feedback = data.feedback.filter(e => e.id !== id);
-  db.write(data);
+  await db.query('DELETE FROM feedback WHERE id = $1', [id]);
   res.json({ success: true });
 });
 
@@ -95,7 +89,7 @@ app.delete('/api/feedback/:id', authMiddleware, (req, res) => {
    PUBLIC ROUTES — accessibles sans auth (formulaires visiteurs)
    ============================================================ */
 
-app.post('/api/reservation/normal', (req, res) => {
+app.post('/api/reservation/normal', async (req, res) => {
   console.log('=== NOUVELLE RÉSERVATION ===');
   console.log('req.body reçu :', JSON.stringify(req.body, null, 2));
   const { nom, telephone, email, nombre_personnes, date, experience, message } = req.body;
@@ -103,11 +97,12 @@ app.post('/api/reservation/normal', (req, res) => {
     console.log('✗ Champs manquants :', { nom, telephone, email, nombre_personnes, date, experience });
     return res.status(400).json({ success: false, error: 'Tous les champs obligatoires doivent être remplis.' });
   }
-  const data = db.read();
   const entry = { id: Date.now(), nom, telephone, email, nombre_personnes, date, experience, message: message || '', created_at: new Date().toISOString() };
-  if (!data.normales) data.normales = [];
-  data.normales.unshift(entry);
-  db.write(data);
+  await db.query(
+    `INSERT INTO reservations (id, type, nom, telephone, email, nombre_personnes, date, experience, message, created_at)
+     VALUES ($1, 'normale', $2, $3, $4, $5, $6, $7, $8, $9)`,
+    [entry.id, nom, telephone, email, nombre_personnes, date, experience, entry.message, entry.created_at]
+  );
 
   console.log('✓ Réservation sauvegardée, envoi des emails...');
   sendAdminNotification(entry).then(() => console.log('✓ Email admin envoyé')).catch(err => console.error('✗ Email admin échoué:', err));
@@ -122,16 +117,17 @@ app.post('/api/reservation/normal', (req, res) => {
   });
 });
 
-app.post('/api/reservation/pro', (req, res) => {
+app.post('/api/reservation/pro', async (req, res) => {
   const { agence, responsable, telephone, email, type_groupe, nombre_visiteurs, date, programme } = req.body;
   if (!agence || !responsable || !telephone || !email || !type_groupe || !nombre_visiteurs || !date) {
     return res.status(400).json({ success: false, error: 'Tous les champs obligatoires doivent être remplis.' });
   }
-  const data = db.read();
   const entry = { id: Date.now(), agence, responsable, telephone, email, type_groupe, nombre_visiteurs, date, programme: programme || '', created_at: new Date().toISOString() };
-  if (!data.professionnelles) data.professionnelles = [];
-  data.professionnelles.unshift(entry);
-  db.write(data);
+  await db.query(
+    `INSERT INTO reservations (id, type, agence, responsable, telephone, email, type_groupe, nombre_visiteurs, date, programme, created_at)
+     VALUES ($1, 'professionnelle', $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    [entry.id, agence, responsable, telephone, email, type_groupe, nombre_visiteurs, date, entry.programme, entry.created_at]
+  );
 
   res.json({
     success: true, id: entry.id,
@@ -142,16 +138,16 @@ app.post('/api/reservation/pro', (req, res) => {
   });
 });
 
-app.post('/api/feedback', (req, res) => {
+app.post('/api/feedback', async (req, res) => {
   const { nom, message, note } = req.body;
   if (!nom || !message || !note) {
     return res.status(400).json({ success: false, error: 'Tous les champs sont obligatoires.' });
   }
-  const data = db.read();
-  if (!data.feedback) data.feedback = [];
   const entry = { id: Date.now(), nom, message, note: parseInt(note), created_at: new Date().toISOString() };
-  data.feedback.unshift(entry);
-  db.write(data);
+  await db.query(
+    'INSERT INTO feedback (id, nom, message, note, created_at) VALUES ($1, $2, $3, $4, $5)',
+    [entry.id, nom, message, entry.note, entry.created_at]
+  );
   res.json({ success: true, id: entry.id });
 });
 
@@ -167,6 +163,8 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+db.initDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`);
+  });
 });
