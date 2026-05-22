@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Arts House Maadid - Artisanat marocain à Erfoud. Réservez une expérience authentique : céramique, objets du Sahara, tapis berbères et visites privées.">
+<meta name="keywords" content="Arts House Maadid, artisanat marocain, Erfoud, réservation, visite privée, Maroc">
+<meta property="og:title" content="Arts House Maadid | Artisanat Marocain & Réservation">
+<meta property="og:description" content="Réservez une expérience authentique à Arts House Maadid - Artisanat marocain à Erfoud">
+<meta property="og:image" content="/image/logo.jpeg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/jpeg" href="/image/logo.jpeg">
 <title>Arts House Maadid | Artisanat Marocain & Réservation</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JV5DJR8E81"></script>
@@ -537,7 +544,16 @@ select:focus,
 textarea:focus{
 outline:0;
 border-color:#c99a4d;
-box-shadow:0 0 0 2px rgba(201,154,77,.1);
+box-shadow:0 0 0 3px rgba(201,154,77,.15);
+}
+input:invalid:not(:placeholder-shown),
+select:invalid:not(:placeholder-shown){
+border-color:#6a2a2a;
+box-shadow:0 0 0 3px rgba(106,42,42,.15);
+}
+input:valid:not(:placeholder-shown){
+border-color:#2a6a3a;
+box-shadow:0 0 0 3px rgba(42,106,58,.1);
 }
 
 textarea{
@@ -1001,6 +1017,52 @@ section{padding:40px 4%}
 .gallery{grid-template-columns:1fr}
 }
 
+/* ===== SCROLL REVEAL ===== */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ===== BACK TO TOP ===== */
+#backToTop{
+position:fixed;
+bottom:80px;
+right:20px;
+width:48px;
+height:48px;
+border-radius:50%;
+background:linear-gradient(135deg,#c99a4d,#a67c2e);
+color:#fff;
+border:none;
+font-size:20px;
+cursor:pointer;
+opacity:0;
+visibility:hidden;
+transition:all .4s ease;
+z-index:999;
+box-shadow:0 4px 15px rgba(201,154,77,.3);
+}
+#backToTop.show{
+opacity:1;
+visibility:visible;
+}
+#backToTop:hover{
+transform:translateY(-3px);
+box-shadow:0 6px 20px rgba(201,154,77,.5);
+}
+
+/* ===== NUMBER INPUT SPINNER ===== */
+input[type=number]::-webkit-inner-spin-button{
+opacity:.5;
+}
+input[type=number]{
+-moz-appearance:textfield;
+}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1039,7 +1101,7 @@ Arts House Maadid
 </header>
 
 <!-- ===== HERO ===== -->
-<section class="hero">
+<section class="hero reveal">
 
 <div class="hero-slides">
 <span></span>
@@ -1073,7 +1135,7 @@ Plongez au cœur de l'artisanat marocain : céramique traditionnelle, objets du 
 </section>
 
 <!-- ===== FEATURES ===== -->
-<div class="features">
+<div class="features reveal">
 
 <div class="feature">
 <span class="feature-icon">👥</span>
@@ -1096,7 +1158,7 @@ Plongez au cœur de l'artisanat marocain : céramique traditionnelle, objets du 
 </div>
 
 <!-- ===== GALLERY ===== -->
-<section>
+<section class="reveal">
 
 <div class="section-ornament">✦ ✦ ✦</div>
 
@@ -1129,7 +1191,7 @@ Découvrez l'authenticité de notre maison d'artisanat à travers ces moments ca
 </section>
 
 <!-- ===== RESERVATION ===== -->
-<section id="reservation">
+<section id="reservation" class="reveal">
 
 <div class="section-ornament">✦ ✦ ✦</div>
 
@@ -1168,7 +1230,9 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 <input name="nombre_personnes" type="number" min="1" max="9999" data-i18n-placeholder="form-nb" placeholder="Nombre de personnes" required>
 <div style="position:relative;flex:1;">
 <input name="date" type="date" required style="padding-left:36px;">
-<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;">📅</span>
+<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c99a4d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+</span>
 </div>
 </div>
 
@@ -1202,7 +1266,7 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 </section>
 
 <!-- ===== LOCALISATION ===== -->
-<section id="localisation">
+<section id="localisation" class="reveal">
 
 <div class="section-ornament">✦ ✦ ✦</div>
 
@@ -1226,7 +1290,7 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 </section>
 
 <!-- ===== FEEDBACK ===== -->
-<section id="feedback">
+<section id="feedback" class="reveal">
 
 <div class="section-ornament">✦ ✦ ✦</div>
 
@@ -1599,7 +1663,25 @@ flatpickr('input[name="date"]', {
   disableMobile: true
 });
 </script>
+
+<script>
+// Scroll reveal animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Back to top
+const btn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  btn.classList.toggle('show', window.scrollY > 500);
+});
+btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
+
+<button id="backToTop">↑</button>
 
 </body>
 </html>
