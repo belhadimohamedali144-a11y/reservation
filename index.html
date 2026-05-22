@@ -239,18 +239,6 @@ position:relative;
 z-index:1;
 }
 
-.hero-badge{
-display:inline-block;
-border:1px solid #c99a4d;
-color:#e8c887;
-padding:6px 16px;
-border-radius:4px;
-font-size:12px;
-letter-spacing:3px;
-text-transform:uppercase;
-margin-bottom:20px;
-background:rgba(201,154,77,.08);
-}
 
 .hero h1{
 font-family:'Playfair Display',Georgia,serif;
@@ -933,31 +921,6 @@ flex-wrap:wrap;
 gap:10px;
 }
 
-.footer-social{
-display:flex;
-gap:12px;
-}
-
-.footer-social a{
-width:36px;
-height:36px;
-border:1px solid #3b2c18;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#9a8a70;
-font-size:14px;
-transition:all .3s;
-text-decoration:none;
-}
-
-.footer-social a:hover{
-border-color:#c99a4d;
-color:#c99a4d;
-background:rgba(201,154,77,.08);
-}
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
 
@@ -1110,9 +1073,6 @@ Arts House Maadid
 </div>
 
 <div>
-
-<div class="hero-badge" data-i18n="hero-badge">✦ Artisanat d'exception depuis 1998</div>
-
 <h1>
 <span data-i18n="hero-line1">Réservez votre</span>
 <span class="gold" data-i18n="hero-line2">expérience authentique</span>
@@ -1355,16 +1315,6 @@ Arts House Maadid
 <p>🕐 <span data-i18n="footer-hours">Lun - Sam : 9h - 19h</span></p>
 </div>
 
-<div>
-<h3 data-i18n="footer-social-title">Suivez-nous</h3>
-<div class="footer-social">
-<a href="#" title="WhatsApp">📱</a>
-<a href="#" title="Instagram">📷</a>
-<a href="#" title="Facebook">👍</a>
-<a href="#" title="Email">✉️</a>
-</div>
-</div>
-
 </div>
 
 <div class="footer-bottom">
@@ -1464,7 +1414,6 @@ const i18n = {
   FR: {
     'logo-sub':'Artisanat marocain • Erfoud',
     'nav-home':'Accueil','nav-res':'Réservation','nav-contact':'Contact',
-    'hero-badge':'✦ Artisanat d\'exception depuis 1998',
     'hero-line1':'Réservez votre','hero-line2':'expérience authentique','hero-line3':'à Arts House Maadid',
     'hero-p':'Plongez au cœur de l\'artisanat marocain : céramique traditionnelle, objets du Sahara, tapis berbères et visites privées dans un espace d\'exception au cœur d\'Erfoud.',
     'hero-btn':'Réserver maintenant','hero-maps':'Google Maps',
@@ -1488,7 +1437,6 @@ const i18n = {
     'footer-desc':'Espaces traditionnels dédiés à la préservation et la promotion de l\'artisanat marocain. Objets du Sahara, céramique, tapis et visites guidées.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Maroc','footer-hours':'Tous les jours sauf ven : 9h - 21h',
-    'footer-social-title':'Suivez-nous',
     'footer-copy':'© 2026 Arts House Maadid — Tous droits réservés',
     'footer-tag':'Artisanat marocain traditionnel',
     'toast-ok':'✓ Réservation envoyée avec succès','toast-err':'✗ Erreur',
@@ -1499,7 +1447,6 @@ const i18n = {
   EN: {
     'logo-sub':'Moroccan crafts • Erfoud',
     'nav-home':'Home','nav-res':'Booking','nav-contact':'Contact',
-    'hero-badge':'✦ Exceptional craftsmanship since 1998',
     'hero-line1':'Book your','hero-line2':'authentic experience','hero-line3':'at Arts House Maadid',
     'hero-p':'Immerse yourself in Moroccan craftsmanship: traditional ceramics, Sahara artifacts, Berber rugs and private tours in an exceptional space in the heart of Erfoud.',
     'hero-btn':'Book now','hero-maps':'Google Maps',
@@ -1523,7 +1470,6 @@ const i18n = {
     'footer-desc':'Traditional spaces dedicated to preserving and promoting Moroccan craftsmanship. Sahara artifacts, ceramics, rugs and guided tours.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Morocco','footer-hours':'Every day except Fri : 9am - 9pm',
-    'footer-social-title':'Follow us',
     'footer-copy':'© 2026 Arts House Maadid — All rights reserved',
     'footer-tag':'Traditional Moroccan craftsmanship',
     'toast-ok':'✓ Booking sent successfully','toast-err':'✗ Error',
@@ -1534,7 +1480,6 @@ const i18n = {
   ES: {
     'logo-sub':'Artesanía marroquí • Erfoud',
     'nav-home':'Inicio','nav-res':'Reserva','nav-contact':'Contacto',
-    'hero-badge':'✦ Artesanía excepcional desde 1998',
     'hero-line1':'Reserve su','hero-line2':'experiencia auténtica','hero-line3':'en Arts House Maadid',
     'hero-p':'Sumérjase en la artesanía marroquí: cerámica tradicional, objetos del Sáhara, alfombras bereberes y visitas privadas en un espacio excepcional en el corazón de Erfoud.',
     'hero-btn':'Reservar ahora','hero-maps':'Google Maps',
@@ -1558,7 +1503,6 @@ const i18n = {
     'footer-desc':'Espacios tradicionales dedicados a la preservación y promoción de la artesanía marroquí. Objetos del Sáhara, cerámica, alfombras y visitas guiadas.',
     'footer-nav-title':'Navegación','footer-contact-title':'Contacto',
     'footer-addr':'Erfoud, Marruecos','footer-hours':'Todos los días excepto vie : 9h - 21h',
-    'footer-social-title':'Síguenos',
     'footer-copy':'© 2026 Arts House Maadid — Todos los derechos reservados',
     'footer-tag':'Artesanía marroquí tradicional',
     'toast-ok':'✓ Reserva enviada con éxito','toast-err':'✗ Error',
