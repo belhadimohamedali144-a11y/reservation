@@ -1002,6 +1002,14 @@ section{padding:40px 4%}
 }
 
 </style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wt4lolosje");
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
 
@@ -1009,7 +1017,7 @@ section{padding:40px 4%}
 <header>
 
 <div class="logo">
-<img src="image/artt.jpeg" alt="Arts House Maadid" class="logo-img">
+<img src="image/logo.jpeg" alt="Arts House Maadid" class="logo-img">
 <div class="logo-text">
 Arts House Maadid
 <span data-i18n="logo-sub">Artisanat marocain • Erfoud</span>
@@ -1147,22 +1155,21 @@ Choisissez le type de réservation adapté à votre visite. Chaque expérience e
 Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 </p>
 
+<div data-clarity-mask="true">
 <input name="nom" data-i18n-placeholder="form-nom" placeholder="Nom complet" required>
 
 <div class="input-row">
 <input name="telephone" data-i18n-placeholder="form-tel" placeholder="Téléphone / WhatsApp" required>
 <input name="email" type="email" data-i18n-placeholder="form-email" placeholder="Email" required>
 </div>
+</div>
 
 <div class="input-row">
-<select name="nombre_personnes" required>
-<option value="" data-i18n="form-nb">Nombre de personnes</option>
-<option value="1-10">1 - 10</option>
-<option value="10-50">10 - 50</option>
-<option value="50-100">50 - 100</option>
-<option value="100-150">100 - 150</option>
-</select>
-<input name="date" type="date" required>
+<input name="nombre_personnes" type="number" min="1" max="9999" data-i18n-placeholder="form-nb" placeholder="Nombre de personnes" required>
+<div style="position:relative;flex:1;">
+<input name="date" type="date" required style="padding-left:36px;">
+<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;">📅</span>
+</div>
 </div>
 
 <select name="experience" required>
@@ -1199,9 +1206,9 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 
 <div class="section-ornament">✦ ✦ ✦</div>
 
-<h2 class="title">Notre Localisation</h2>
+<h2 class="title" data-i18n="loc-title">Notre Localisation</h2>
 
-<p class="subtitle">Visitez ARTS HOUSE MAADIDE — Erfoud</p>
+<p class="subtitle" data-i18n="loc-subtitle">Visitez ARTS HOUSE MAADIDE — Erfoud</p>
 
 <div class="title-decoration">
 <span></span><i>◆</i><span></span>
@@ -1280,7 +1287,7 @@ Arts House Maadid
 <h3 data-i18n="footer-contact-title">Contact</h3>
 <p>📍 <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
 <p>📞 +212 6 62 19 13 01</p>
-<p>✉️ contact@artshousemaadid.com</p>
+<p>✉️ artshousemaadid@gmail.com</p>
 <p>🕐 <span data-i18n="footer-hours">Lun - Sam : 9h - 19h</span></p>
 </div>
 
@@ -1416,13 +1423,14 @@ const i18n = {
     'guide-btn':'Appeler le +212 662-191301',
     'footer-desc':'Espaces traditionnels dédiés à la préservation et la promotion de l\'artisanat marocain. Objets du Sahara, céramique, tapis et visites guidées.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
-    'footer-addr':'Erfoud, Maroc','footer-hours':'Lun - Sam : 9h - 19h',
+    'footer-addr':'Erfoud, Maroc','footer-hours':'Tous les jours sauf ven : 9h - 21h',
     'footer-social-title':'Suivez-nous',
     'footer-copy':'© 2026 Arts House Maadid — Tous droits réservés',
     'footer-tag':'Artisanat marocain traditionnel',
     'toast-ok':'✓ Réservation envoyée avec succès','toast-err':'✗ Erreur',
     'fb-title':'Avis Clients','fb-sub':'Partagez votre expérience et aidez d\'autres voyageurs à découvrir notre maison d\'artisanat.',
-    'fb-form-title':'Laissez un avis','fb-nom':'Votre nom','fb-msg':'Votre avis','fb-submit':'Envoyer mon avis'
+    'fb-form-title':'Laissez un avis','fb-nom':'Votre nom','fb-msg':'Votre avis','fb-submit':'Envoyer mon avis',
+    'loc-title':'Notre Localisation','loc-subtitle':'Visitez ARTS HOUSE MAADIDE — Erfoud'
   },
   EN: {
     'logo-sub':'Moroccan crafts • Erfoud',
@@ -1450,13 +1458,14 @@ const i18n = {
     'guide-btn':'Call +212 662-191301',
     'footer-desc':'Traditional spaces dedicated to preserving and promoting Moroccan craftsmanship. Sahara artifacts, ceramics, rugs and guided tours.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
-    'footer-addr':'Erfoud, Morocco','footer-hours':'Mon - Sat : 9am - 7pm',
+    'footer-addr':'Erfoud, Morocco','footer-hours':'Every day except Fri : 9am - 9pm',
     'footer-social-title':'Follow us',
     'footer-copy':'© 2026 Arts House Maadid — All rights reserved',
     'footer-tag':'Traditional Moroccan craftsmanship',
     'toast-ok':'✓ Booking sent successfully','toast-err':'✗ Error',
     'fb-title':'Client Reviews','fb-sub':'Share your experience and help other travelers discover our craft house.',
-    'fb-form-title':'Leave a review','fb-nom':'Your name','fb-msg':'Your review',    'fb-submit':'Send review'
+    'fb-form-title':'Leave a review','fb-nom':'Your name','fb-msg':'Your review',    'fb-submit':'Send review',
+    'loc-title':'Our Location','loc-subtitle':'Visit ARTS HOUSE MAADIDE — Erfoud'
   },
   ES: {
     'logo-sub':'Artesanía marroquí • Erfoud',
@@ -1484,13 +1493,14 @@ const i18n = {
     'guide-btn':'Llamar al +212 662-191301',
     'footer-desc':'Espacios tradicionales dedicados a la preservación y promoción de la artesanía marroquí. Objetos del Sáhara, cerámica, alfombras y visitas guiadas.',
     'footer-nav-title':'Navegación','footer-contact-title':'Contacto',
-    'footer-addr':'Erfoud, Marruecos','footer-hours':'Lun - Sáb : 9h - 19h',
+    'footer-addr':'Erfoud, Marruecos','footer-hours':'Todos los días excepto vie : 9h - 21h',
     'footer-social-title':'Síguenos',
     'footer-copy':'© 2026 Arts House Maadid — Todos los derechos reservados',
     'footer-tag':'Artesanía marroquí tradicional',
     'toast-ok':'✓ Reserva enviada con éxito','toast-err':'✗ Error',
     'fb-title':'Opiniones de Clientes','fb-sub':'Comparta su experiencia y ayude a otros viajeros a descubrir nuestra casa de artesanía.',
-    'fb-form-title':'Deje una opinión','fb-nom':'Su nombre','fb-msg':'Su opinión',    'fb-submit':'Enviar opinión'
+    'fb-form-title':'Deje una opinión','fb-nom':'Su nombre','fb-msg':'Su opinión',    'fb-submit':'Enviar opinión',
+    'loc-title':'Nuestra Ubicación','loc-subtitle':'Visite ARTS HOUSE MAADIDE — Erfoud'
   }
 };
 
@@ -1574,6 +1584,21 @@ async function loadFeedback() {
   `).join('');
 }
 loadFeedback();
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+<script>
+const lang = localStorage.getItem('lang') || 'FR';
+flatpickr('input[name="date"]', {
+  locale: lang === 'EN' ? 'en' : lang === 'ES' ? 'es' : 'fr',
+  minDate: 'today',
+  dateFormat: 'Y-m-d',
+  disableMobile: true
+});
+</script>
 </script>
 
 </body>

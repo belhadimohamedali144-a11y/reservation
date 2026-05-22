@@ -74,6 +74,18 @@ app.delete('/api/reservation/:id', authMiddleware, async (req, res) => {
   }
 });
 
+app.get('/api/stats', authMiddleware, async (req, res) => {
+  try {
+    const aujourdhui = new Date().toISOString().split('T')[0];
+    const query = "SELECT COUNT(*)::int AS total FROM reservations WHERE created_at::date = $1";
+    const result = await db.query(query, [aujourdhui]);
+    res.json({ success: true, total: result.rows[0].total, date: aujourdhui });
+  } catch (error) {
+    console.error("Erreur stats :", error);
+    res.status(500).json({ success: false, message: "Erreur serveur" });
+  }
+});
+
 app.get('/api/feedback', authMiddleware, async (req, res) => {
   const result = await db.query('SELECT * FROM feedback ORDER BY created_at DESC');
   res.json({ success: true, data: result.rows });

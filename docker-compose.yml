@@ -16,6 +16,8 @@ services:
       - DB_PORT=5432
     depends_on:
       - postgres_db
+    volumes:
+      - .:/usr/src/app
 
   postgres_db:
     image: postgres:15-alpine
