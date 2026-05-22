@@ -1026,6 +1026,28 @@ opacity:.5;
 input[type=number]{
 -moz-appearance:textfield;
 }
+
+/* ===== CONTACT MODAL ===== */
+#contactOverlay{
+position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;
+display:none;align-items:center;justify-content:center;
+backdrop-filter:blur(4px);
+}
+#contactOverlay.show{display:flex}
+#contactModal{
+background:linear-gradient(135deg,#1a140e,#0d0a06);
+border:1px solid #c99a4d;border-radius:12px;padding:36px 40px;
+max-width:400px;width:90%;position:relative;
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+#contactModal h2{color:#e8c887;margin-bottom:20px;font-family:'Playfair Display',Georgia,serif}
+#contactModal p{margin:12px 0;color:#d4c5a0;font-size:15px;line-height:1.6}
+#contactModal .close{
+position:absolute;top:12px;right:16px;font-size:22px;
+cursor:pointer;color:#9a8a70;background:none;border:none;
+transition:color .3s;
+}
+#contactModal .close:hover{color:#c99a4d}
 </style>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1052,7 +1074,7 @@ Arts House Maadid
 <nav>
 <a href="#" data-i18n="nav-home">Accueil</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
-<a href="#" data-i18n="nav-contact">Contact</a>
+<a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </nav>
 
 <div class="lang-switch">
@@ -1304,7 +1326,7 @@ Arts House Maadid
 <h3 data-i18n="footer-nav-title">Navigation</h3>
 <a href="#" data-i18n="nav-home">Accueil</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
-<a href="#" data-i18n="nav-contact">Contact</a>
+<a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </div>
 
 <div>
@@ -1626,6 +1648,22 @@ btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth
 </script>
 
 <button id="backToTop">↑</button>
+
+<!-- ===== CONTACT MODAL ===== -->
+<div id="contactOverlay" onclick="closeContact(event)">
+<div id="contactModal">
+<button class="close" onclick="closeContact()">&times;</button>
+<h2 data-i18n="nav-contact">Contact</h2>
+<p>📍 <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
+<p>📞 +212 6 62 19 13 01</p>
+<p>✉️ artshousemaadid@gmail.com</p>
+<p>🕐 <span data-i18n="footer-hours">Tous les jours sauf ven : 9h - 21h</span></p>
+</div>
+</div>
+<script>
+function openContact(){document.getElementById('contactOverlay').classList.add('show')}
+function closeContact(e){if(!e||e.target===document.getElementById('contactOverlay'))document.getElementById('contactOverlay').classList.remove('show')}
+</script>
 
 </body>
 </html>
