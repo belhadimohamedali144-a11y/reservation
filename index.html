@@ -58,8 +58,7 @@ z-index:99;
 background:rgba(5,5,5,.92);
 display:flex;
 align-items:center;
-justify-content:space-between;
-padding:10px 6%;
+padding:8px 20px;
 border-bottom:2px solid #c99a4d;
 backdrop-filter:blur(12px);
 box-shadow:0 4px 30px rgba(201,154,77,.08);
@@ -82,8 +81,8 @@ gap:12px;
 }
 
 .logo-img{
-width:60px;
-height:60px;
+width:45px;
+height:45px;
 border-radius:50%;
 border:2px solid #c99a4d;
 object-fit:cover;
@@ -91,23 +90,30 @@ object-fit:cover;
 
 .logo-text{
 font-family:'Playfair Display',Georgia,serif;
-font-size:18px;
+font-size:16px;
 color:#e8c887;
 letter-spacing:1px;
 }
 
 .logo-text span{
 display:block;
-font-size:11px;
+font-size:10px;
 color:#a08050;
 letter-spacing:2px;
 text-transform:uppercase;
 }
 
+nav{
+display:flex;
+flex:1;
+justify-content:center;
+margin:0 20px;
+}
+
 nav a{
 color:#ddd;
 text-decoration:none;
-margin:0 16px;
+margin:0 14px;
 font-size:14px;
 position:relative;
 transition:color .3s;
@@ -151,7 +157,7 @@ transition:all .3s;
 .mobile-menu{
 display:none;
 position:fixed;
-top:64px;left:0;width:100%;
+top:61px;left:0;width:100%;
 background:rgba(5,5,5,.97);
 backdrop-filter:blur(12px);
 border-bottom:2px solid #c99a4d;
@@ -171,7 +177,7 @@ transition:color .3s;
 .lang-switch{
 display:flex;
 gap:4px;
-margin-left:20px;
+margin-left:auto;
 }
 
 .lang-switch a{
@@ -308,28 +314,9 @@ gap:14px;
 flex-wrap:wrap;
 }
 
-.hero-ornament{
-margin-top:40px;
-display:flex;
-align-items:center;
-gap:16px;
-color:#6f4d22;
-font-size:12px;
-letter-spacing:2px;
-text-transform:uppercase;
-}
-
+.hero-ornament{display:none}
 .hero-ornament::before,
-.hero-ornament::after{
-content:'';
-flex:1;
-height:1px;
-background:linear-gradient(90deg,transparent,#6f4d22);
-}
-
-.hero-ornament::after{
-background:linear-gradient(90deg,#6f4d22,transparent);
-}
+.hero-ornament::after{display:none}
 
 /* ===== SECTION ===== */
 section{
@@ -1047,7 +1034,6 @@ Arts House Maadid
 </div>
 
 <nav>
-<a href="#" data-i18n="nav-home">Accueil</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </nav>
@@ -1065,7 +1051,6 @@ Arts House Maadid
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-<a href="#" data-i18n="nav-home">Accueil</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact();document.getElementById('mobileMenu').classList.remove('show');document.getElementById('hamburger').classList.remove('active')">Contact</a>
 </div>
@@ -1286,7 +1271,6 @@ Arts House Maadid
 
 <div>
 <h3 data-i18n="footer-nav-title">Navigation</h3>
-<a href="#" data-i18n="nav-home">Accueil</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </div>
@@ -1397,7 +1381,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 const i18n = {
   FR: {
     'logo-sub':'Artisanat marocain • Erfoud',
-    'nav-home':'Accueil','nav-res':'Réservation','nav-contact':'Contact',
+    'nav-res':'Réservation','nav-contact':'Contact',
     'hero-line1':'Réservez votre','hero-line2':'expérience authentique','hero-line3':'à Arts House Maadid',
     'hero-p':'Plongez au cœur de l\'artisanat marocain : céramique traditionnelle, objets du Sahara, tapis berbères et visites privées dans un espace d\'exception au cœur d\'Erfoud.',
     'hero-btn':'Réserver maintenant','hero-maps':'Google Maps',
@@ -1428,7 +1412,7 @@ const i18n = {
   },
   EN: {
     'logo-sub':'Moroccan crafts • Erfoud',
-    'nav-home':'Home','nav-res':'Booking','nav-contact':'Contact',
+    'nav-res':'Booking','nav-contact':'Contact',
     'hero-line1':'Book your','hero-line2':'authentic experience','hero-line3':'at Arts House Maadid',
     'hero-p':'Immerse yourself in Moroccan craftsmanship: traditional ceramics, Sahara artifacts, Berber rugs and private tours in an exceptional space in the heart of Erfoud.',
     'hero-btn':'Book now','hero-maps':'Google Maps',
@@ -1459,7 +1443,7 @@ const i18n = {
   },
   ES: {
     'logo-sub':'Artesanía marroquí • Erfoud',
-    'nav-home':'Inicio','nav-res':'Reserva','nav-contact':'Contacto',
+    'nav-res':'Reserva','nav-contact':'Contacto',
     'hero-line1':'Reserve su','hero-line2':'experiencia auténtica','hero-line3':'en Arts House Maadid',
     'hero-p':'Sumérjase en la artesanía marroquí: cerámica tradicional, objetos del Sáhara, alfombras bereberes y visitas privadas en un espacio excepcional en el corazón de Erfoud.',
     'hero-btn':'Reservar ahora','hero-maps':'Google Maps',
@@ -1624,6 +1608,13 @@ function closeContact(e){if(!e||e.target===document.getElementById('contactOverl
 document.getElementById('hamburger').addEventListener('click', function(){
   this.classList.toggle('active');
   document.getElementById('mobileMenu').classList.toggle('show');
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var el=document.querySelector('.hero-ornament');
+  if(el)el.remove();
 });
 </script>
 
