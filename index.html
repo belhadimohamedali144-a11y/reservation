@@ -244,8 +244,8 @@ box-shadow:0 8px 25px rgba(201,154,77,.15);
  position:relative;
  overflow:hidden;
  display:flex;
- align-items:center;
- padding:120px 6% 60px;
+ align-items:flex-start;
+ padding:50px 6% 60px;
 }
 .hero::before{
   content:'';
@@ -275,7 +275,7 @@ box-shadow:0 8px 25px rgba(201,154,77,.15);
   z-index:2;
   text-align:left;
   margin:0 auto 0 0;
-  padding:120px 20px 120px 5%;
+  padding:0 20px 60px 5%;
 }
 .hero-label{
   color:#c5a880;
@@ -336,7 +336,8 @@ box-shadow:0 8px 25px rgba(201,154,77,.15);
   box-shadow:0 0 30px rgba(214,170,88,.35);
 }
 @media(max-width:768px){
-  .hero-content{padding:90px 18px 90px 5%}
+  .hero{padding:50px 5% 40px}
+  .hero-content{padding:0 18px 40px 5%}
   .hero-content p{font-size:16px}
   .hero-btn{width:100%;max-width:320px;min-width:unset}
   .hero-buttons{justify-content:flex-start}
@@ -1248,7 +1249,6 @@ Arts House Maadid
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <span class="hero-label" data-i18n="hero-label">ARTS HOUSE MAADID &bull; ERFOUD</span>
 
     <h1>
       <span class="text-white" data-i18n="hero-w1">R&eacute;servez votre</span>
