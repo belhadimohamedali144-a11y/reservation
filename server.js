@@ -86,9 +86,26 @@ app.get('/api/stats', authMiddleware, async (req, res) => {
   }
 });
 
-app.get('/api/feedback', authMiddleware, async (req, res) => {
-  const result = await db.query('SELECT * FROM feedback ORDER BY created_at DESC');
+app.get('/api/feedback', async (req, res) => {
+  const result = await db.query("SELECT * FROM feedback WHERE approved = true ORDER BY created_at DESC");
   res.json({ success: true, data: result.rows });
+});
+
+app.get('/api/feedback/pending', authMiddleware, async (req, res) => {
+  const result = await db.query("SELECT * FROM feedback ORDER BY created_at DESC");
+  res.json({ success: true, data: result.rows });
+});
+
+app.put('/api/feedback/:id/approve', authMiddleware, async (req, res) => {
+  const id = Number(req.params.id);
+  await db.query('UPDATE feedback SET approved = true WHERE id = $1', [id]);
+  res.json({ success: true });
+});
+
+app.put('/api/feedback/:id/reject', authMiddleware, async (req, res) => {
+  const id = Number(req.params.id);
+  await db.query('DELETE FROM feedback WHERE id = $1', [id]);
+  res.json({ success: true });
 });
 
 app.delete('/api/feedback/:id', authMiddleware, async (req, res) => {
@@ -157,7 +174,7 @@ app.post('/api/feedback', async (req, res) => {
   }
   const entry = { id: Date.now(), nom, message, note: parseInt(note), created_at: new Date().toISOString() };
   await db.query(
-    'INSERT INTO feedback (id, nom, message, note, created_at) VALUES ($1, $2, $3, $4, $5)',
+    'INSERT INTO feedback (id, nom, message, note, approved, created_at) VALUES ($1, $2, $3, $4, false, $5)',
     [entry.id, nom, message, entry.note, entry.created_at]
   );
   res.json({ success: true, id: entry.id });

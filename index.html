@@ -21,6 +21,7 @@ gtag('config', 'G-JV5DJR8E81');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 
 *{
@@ -36,7 +37,9 @@ font-family:'Inter',Arial,sans-serif;
 color:#ddd;
 position:relative;
 background:#0a0806;
+transition:opacity .3s ease;
 }
+body.lang-switching{opacity:.6;pointer-events:none}
 
 body::before{
 content:'';
@@ -60,34 +63,34 @@ position:fixed;
 top:0;
 width:100%;
 z-index:99;
-background:rgba(5,5,5,.92);
+background:rgba(0,0,0,.95);
 display:flex;
 align-items:center;
-padding:8px 20px;
-border-bottom:2px solid #c99a4d;
-backdrop-filter:blur(12px);
-box-shadow:0 4px 30px rgba(201,154,77,.08);
+padding:12px 40px;
+border-bottom:1px solid rgba(201,154,77,.3);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
 }
 
 header::after{
 content:'';
 position:absolute;
-bottom:-4px;
-left:10%;
-width:80%;
-height:2px;
-background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+bottom:0;
+left:15%;
+width:70%;
+height:1px;
+background:linear-gradient(90deg,transparent,rgba(201,154,77,.5),transparent);
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:12px;
+gap:14px;
 }
 
 .logo-img{
-width:45px;
-height:45px;
+width:42px;
+height:42px;
 border-radius:50%;
 border:2px solid #c99a4d;
 object-fit:cover;
@@ -95,31 +98,36 @@ object-fit:cover;
 
 .logo-text{
 font-family:'Playfair Display',Georgia,serif;
-font-size:16px;
+font-size:17px;
 color:#e8c887;
 letter-spacing:1px;
+font-weight:700;
 }
 
 .logo-text span{
 display:block;
-font-size:10px;
+font-size:9px;
 color:#a08050;
-letter-spacing:2px;
+letter-spacing:3px;
 text-transform:uppercase;
+font-weight:400;
 }
 
 nav{
 display:flex;
 flex:1;
 justify-content:center;
-margin:0 20px;
+gap:8px;
 }
 
 nav a{
-color:#ddd;
+color:rgba(255,255,255,.8);
 text-decoration:none;
-margin:0 14px;
+margin:0 16px;
 font-size:14px;
+font-weight:500;
+letter-spacing:1px;
+text-transform:uppercase;
 position:relative;
 transition:color .3s;
 }
@@ -162,12 +170,12 @@ transition:all .3s;
 .mobile-menu{
 display:none;
 position:fixed;
-top:61px;left:0;width:100%;
-background:rgba(5,5,5,.97);
+top:66px;left:0;width:100%;
+background:rgba(0,0,0,.97);
 backdrop-filter:blur(12px);
-border-bottom:2px solid #c99a4d;
+border-bottom:1px solid rgba(201,154,77,.3);
 flex-direction:column;
-padding:20px 6%;
+padding:24px 6%;
 z-index:98;
 }
 .mobile-menu.show{display:flex}
@@ -181,20 +189,21 @@ transition:color .3s;
 
 .lang-switch{
 display:flex;
-gap:4px;
+gap:6px;
 margin-left:auto;
 }
 
 .lang-switch a{
-color:#6f4d22;
+color:rgba(255,255,255,.5);
 text-decoration:none;
 font-size:12px;
-font-weight:bold;
-padding:4px 8px;
-border:1px solid #3b2c18;
-border-radius:4px;
+font-weight:700;
+padding:6px 12px;
+border:1px solid rgba(201,154,77,.25);
+border-radius:6px;
 transition:all .3s;
 letter-spacing:.5px;
+text-transform:uppercase;
 }
 
 .lang-switch a.active{
@@ -204,8 +213,8 @@ background:rgba(201,154,77,.1);
 }
 
 .lang-switch a:hover:not(.active){
-color:#9a8a70;
-border-color:#5b4525;
+color:#e8c887;
+border-color:rgba(201,154,77,.5);
 }
 
 .btn{
@@ -240,20 +249,12 @@ box-shadow:0 8px 25px rgba(201,154,77,.15);
 
 /* ===== HERO ===== */
 .hero{
- min-height:100vh;
- position:relative;
- overflow:hidden;
- display:flex;
- align-items:center;
- padding:120px 6% 60px;
-}
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:0;
-  background:url('image/WhatsApp Image 2026-05-24 at 18.16.18.jpeg') center / cover fixed;
-  opacity:.15;
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  padding:85px 8% 80px;
 }
 .hero-video{
   position:absolute;
@@ -261,83 +262,246 @@ box-shadow:0 8px 25px rgba(201,154,77,.15);
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:brightness(0.80) contrast(1.15) saturate(1.1);
-  transform:scale(1.02);
+  filter:brightness(0.50) contrast(1.06);
+  transform:scale(1.05);
 }
 .hero-overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.30), rgba(0,0,0,0.60));
+  background:linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.05) 100%);
   z-index:1;
 }
 .hero-content{
   position:relative;
   z-index:2;
-  text-align:center;
-  max-width:1000px;
-  margin:auto;
-  padding:120px 20px;
-}
-.hero-label{
-  color:#d6aa58;
-  letter-spacing:4px;
-  font-size:14px;
-  font-weight:700;
+  text-align:left;
+  max-width:780px;
+  margin:0;
+  margin-left:80px;
+  padding:0 20px 0 45px;
 }
 .hero-content h1{
-  font-family:Georgia,serif;
-  font-size:clamp(42px,7vw,88px);
-  line-height:1.05;
-  color:#f0c76b;
-  margin:22px 0;
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(38px,6.5vw,86px);
+  line-height:1.15;
+  letter-spacing:-1px;
+  color:#fff;
+  margin:0 0 32px;
+  text-shadow:0 6px 50px rgba(0,0,0,.8), 0 2px 15px rgba(0,0,0,.5);
+}
+.hero-content h1 .gold{
+  color:#d4a437;
 }
 .hero-content p{
-  max-width:720px;
-  margin:0 auto;
-  color:#fff;
-  font-size:20px;
-  line-height:1.6;
+  max-width:560px;
+  margin:0 0 0;
+  color:rgba(255,255,255,0.85);
+  font-size:17px;
+  line-height:1.85;
+  text-shadow:0 4px 30px rgba(0,0,0,.7);
 }
 .hero-buttons{
   display:flex;
-  justify-content:center;
-  gap:22px;
-  margin-top:38px;
+  justify-content:flex-start;
+  gap:28px;
+  margin-top:64px;
   flex-wrap:wrap;
 }
 .hero-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:12px;
-  min-width:240px;
-  padding:17px 34px;
-  border-radius:14px;
-  font-weight:700;
+  gap:10px;
+  min-width:200px;
+  padding:16px 36px;
+  border-radius:50px;
+  font-weight:600;
   text-decoration:none;
-  transition:.35s ease;
+  transition:all .4s cubic-bezier(.25,.46,.45,.94);
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  position:relative;
+  overflow:hidden;
 }
 .hero-btn i{
-  font-size:19px;
+  font-size:16px;
+  transition:transform .4s ease;
+}
+.hero-btn:hover i{
+  transform:translateX(4px);
 }
 .btn-gold{
-  background:linear-gradient(135deg,#f3c96b,#c99732);
-  color:#15100a;
-  border:1px solid rgba(255,220,140,.6);
+  background:linear-gradient(135deg,#d4a437,#b8862e);
+  color:#0d0a08;
+  border:none;
+  box-shadow:0 4px 20px rgba(212,164,55,.25);
+}
+.btn-gold:hover{
+  box-shadow:0 12px 40px rgba(212,164,55,.5);
+  transform:translateY(-4px);
 }
 .btn-outline{
-  background:rgba(10,8,6,.45);
-  color:#f3c96b;
-  border:1px solid rgba(243,201,107,.7);
+  background:transparent;
+  color:#d4a437;
+  border:1.5px solid rgba(212,164,55,.5);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
 }
-.hero-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 30px rgba(214,170,88,.35);
+.btn-outline:hover{
+  background:#d4a437;
+  color:#0d0a08;
+  border-color:#d4a437;
+  box-shadow:0 12px 40px rgba(212,164,55,.4);
+  transform:translateY(-4px);
 }
 @media(max-width:768px){
-  .hero-content{padding:90px 18px}
-  .hero-content p{font-size:16px}
-  .hero-btn{width:100%;max-width:320px}
+  .hero-content{
+    padding:0 20px 0 25px;
+    margin-left:0;
+  }
+  .hero-content h1{font-size:clamp(30px,8vw,46px);margin-bottom:24px}
+  .hero-content p{font-size:15px}
+  .hero-btn{
+    width:100%;
+    min-width:0;
+    padding:14px 28px;
+    font-size:12px;
+    letter-spacing:.5px;
+  }
+  .hero-buttons{flex-direction:column;align-items:stretch;gap:14px;margin-top:42px}
+}
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.50) contrast(1.1);
+  transform:scale(1.05);
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.25) 100%);
+  z-index:1;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:left;
+  max-width:800px;
+  margin:0;
+  margin-left:100px;
+  padding:40px 20px 40px 0;
+}
+.hero-label{
+  color:#d4a437;
+  letter-spacing:6px;
+  font-size:12px;
+  font-weight:600;
+  display:block;
+  margin-bottom:30px;
+  text-transform:uppercase;
+  position:relative;
+  padding-left:70px;
+}
+.hero-label::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:50%;
+  width:50px;
+  height:1px;
+  background:#d4a437;
+  transform:translateY(-50%);
+}
+.hero-content h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(40px,7vw,90px);
+  line-height:1.15;
+  letter-spacing:-1px;
+  color:#fff;
+  margin:0 0 25px;
+  text-shadow:0 8px 45px rgba(0,0,0,.7);
+}
+.hero-content h1 .gold{
+  color:#d4a437;
+}
+.hero-content p{
+  max-width:540px;
+  margin:0 0 0;
+  color:rgba(255,255,255,0.78);
+  font-size:17px;
+  line-height:1.85;
+  text-shadow:0 4px 25px rgba(0,0,0,.5);
+}
+.hero-buttons{
+  display:flex;
+  justify-content:flex-start;
+  gap:24px;
+  margin-top:52px;
+  flex-wrap:wrap;
+}
+.hero-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:210px;
+  padding:15px 38px;
+  border-radius:50px;
+  font-weight:600;
+  text-decoration:none;
+  transition:all .4s ease;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.hero-btn i{
+  font-size:16px;
+}
+.btn-gold{
+  background:linear-gradient(135deg,#d4a437,#b8862e);
+  color:#0d0a08;
+  border:none;
+  box-shadow:0 4px 20px rgba(212,164,55,.25);
+}
+.btn-outline{
+  background:transparent;
+  color:#d4a437;
+  border:1.5px solid rgba(212,164,55,.5);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+.hero-btn:hover{
+  transform:translateY(-4px);
+}
+.btn-gold:hover{
+  box-shadow:0 8px 35px rgba(212,164,55,.4);
+}
+.btn-outline:hover{
+  background:#d4a437;
+  color:#0d0a08;
+  border-color:#d4a437;
+  box-shadow:0 8px 35px rgba(212,164,55,.3);
+}
+@media(max-width:768px){
+  .hero-content{
+    padding:30px 20px 30px 0;
+    margin-left:0;
+  }
+  .hero-content h1{font-size:clamp(32px,9vw,50px)}
+  .hero-content p{font-size:15px}
+  .hero-label::before{width:30px}
+  .hero-label{padding-left:45px;font-size:10px;letter-spacing:4px}
+  .hero-btn{
+    width:100%;
+    min-width:0;
+    padding:14px 30px;
+    font-size:12px;
+  }
+  .hero-buttons{flex-direction:column;align-items:stretch;gap:16px;margin-top:36px}
 }
 
 /* ===== TRIPLE GALLERY ===== */
@@ -447,19 +611,70 @@ margin:0;
 
 .guide-call{
 text-align:center;
-margin-top:40px;
-padding:24px;
+margin:50px auto 0;
+padding:48px 40px;
+max-width:580px;
+background:rgba(20,16,10,.85);
+border:1px solid rgba(212,164,55,.18);
+border-radius:16px;
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+box-shadow:0 0 30px rgba(212,164,55,.04);
+}
+
+.guide-call .guide-icon{
+color:#e8c887;
+font-size:36px;
+margin-bottom:20px;
+display:block;
+text-shadow:0 0 20px rgba(232,200,135,.15);
 }
 
 .guide-call p{
-color:#b5a892;
+color:#d4c8b0;
 font-size:15px;
-margin-bottom:16px;
-line-height:1.6;
+margin-bottom:28px;
+line-height:1.8;
+max-width:420px;margin-left:auto;margin-right:auto;
 }
 
 .guide-call .btn{
 display:inline-block;
+padding:16px 38px;
+border-radius:50px;
+font-size:13px;
+letter-spacing:1.5px;
+text-transform:uppercase;
+font-weight:600;
+background:linear-gradient(135deg,#d4a437,#b8862e);
+border:1px solid rgba(212,164,55,.4);
+color:#0d0a08;
+transition:all .4s cubic-bezier(.25,.46,.45,.94);
+box-shadow:0 4px 20px rgba(212,164,55,.25),0 0 0 0 rgba(212,164,55,0);
+position:relative;
+z-index:1;
+}
+
+.guide-call .btn::before{
+content:'';position:absolute;inset:-6px;z-index:-1;
+border-radius:60px;
+background:radial-gradient(50% 100% at 50% 0,rgba(212,164,55,.5),transparent 70%);
+opacity:.6;
+transition:opacity .6s;
+animation:guideGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes guideGlow{
+0%,100%{opacity:.3;transform:scale(.95)}
+50%{opacity:.8;transform:scale(1.08)}
+}
+
+.guide-call .btn:hover::before{opacity:1;animation-duration:1.2s}
+
+.guide-call .btn:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 40px rgba(212,164,55,.35),0 0 30px rgba(212,164,55,.1);
+border-color:rgba(212,164,55,.7);
 }
 
 @media(max-width:768px){
@@ -625,14 +840,14 @@ transform:scale(1.2);
 .feedback-form input,
 .feedback-form textarea{
 width:100%;
-padding:14px 16px;
+padding:16px 20px;
 background:rgba(255,255,255,.06);
 border:1px solid rgba(201,154,77,.3);
 border-radius:8px;
 color:#f0ebe0;
 font-size:14px;
 font-family:'Inter',Arial,sans-serif;
-transition:border-color .3s, background .3s;
+transition:border-color .3s, background .3s, box-shadow .3s;
 box-sizing:border-box;
 margin-bottom:16px;
 }
@@ -642,7 +857,7 @@ margin-bottom:16px;
 outline:none;
 border-color:#c99a4d;
 background:rgba(255,255,255,.1);
-box-shadow:0 0 0 3px rgba(201,154,77,.1);
+box-shadow:0 0 0 3px rgba(201,154,77,.25), 0 0 20px rgba(201,154,77,.12);
 }
 
 .feedback-form input::placeholder,
@@ -657,68 +872,86 @@ min-height:80px;
 
 .feedback-form button[type="submit"]{
 width:100%;
-padding:14px;
-background:linear-gradient(135deg,#c99a4d,#b8862e);
+padding:16px;
+background:linear-gradient(135deg,#d4a437,#b8862e);
 border:0;
-border-radius:8px;
-font-weight:bold;
-font-size:14px;
-color:#111;
+border-radius:10px;
+font-weight:700;
+font-size:15px;
+color:#0d0a08;
 cursor:pointer;
-transition:all .3s;
+transition:all .3s ease;
 letter-spacing:.5px;
+box-shadow:0 4px 15px rgba(212,164,55,.2);
 }
 
 .feedback-form button[type="submit"]:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 25px rgba(201,154,77,.25);
+transform:translateY(-3px);
+box-shadow:0 10px 35px rgba(212,164,55,.35);
 }
 
 .feedback-list{
 display:flex;
 flex-direction:column;
-gap:16px;
+gap:20px;
 }
 
 .feedback-item{
-background:rgba(0,0,0,.65);
-border:1px solid rgba(201,154,77,.2);
-border-radius:12px;
-padding:24px;
-transition:border-color .3s, transform .3s;
+background:linear-gradient(145deg,rgba(10,8,6,.85),rgba(20,16,12,.7));
+border:1px solid rgba(212,164,55,.15);
+border-radius:14px;
+padding:28px;
+transition:all .3s ease;
+position:relative;
+overflow:hidden;
+}
+
+.feedback-item::before{
+content:'"';
+position:absolute;
+top:10px;
+right:18px;
+font-size:48px;
+color:rgba(212,164,55,.08);
+font-family:'Playfair Display',serif;
+line-height:1;
+pointer-events:none;
 }
 
 .feedback-item:hover{
-border-color:rgba(201,154,77,.4);
-transform:translateY(-2px);
+border-color:rgba(212,164,55,.35);
+transform:translateY(-3px);
+box-shadow:0 8px 30px rgba(0,0,0,.3);
 }
 
 .feedback-item h4{
 color:#e8c887;
-font-size:15px;
-margin:0 0 6px;
+font-size:16px;
+margin:0 0 8px;
 font-family:'Playfair Display',Georgia,serif;
+letter-spacing:.5px;
 }
 
 .feedback-item .stars-display{
-color:#c99a4d;
-font-size:14px;
-margin-bottom:8px;
-letter-spacing:2px;
+color:#d4a437;
+font-size:15px;
+margin-bottom:10px;
+letter-spacing:3px;
 }
 
 .feedback-item p{
-color:#b5a892;
+color:#c4b8a0;
 font-size:14px;
-line-height:1.7;
+line-height:1.75;
 margin:0;
 }
 
 .feedback-item .date{
-color:#5a4a30;
+color:rgba(255,255,255,.2);
 font-size:11px;
-margin-top:12px;
+margin-top:14px;
 display:block;
+letter-spacing:.5px;
 }
 
 .feedback-empty{
@@ -736,7 +969,7 @@ font-style:italic;
 
 /* ===== INSTAGRAM ===== */
 .instagram-section{
-  padding:60px 6% 40px;
+  padding:100px 6% 80px;
   text-align:center;
 }
 .instagram-section .elfsight-app-950157ba-bb22-42ee-a202-92ace9c1082f{
@@ -753,10 +986,112 @@ font-style:italic;
 /* ===== FOOTER ===== */
 footer{
 background:#050302;
-border-top:2px solid #2a1f10;
-padding:60px 6% 30px;
+border-top:1px solid rgba(201,154,77,.25);
+padding:80px 6% 40px;
 position:relative;
 overflow:hidden;
+}
+
+footer::after{
+content:'';
+position:absolute;
+inset:0;
+background:url('image/WhatsApp Image 2026-05-06 at 00.52.27.jpeg') center / cover;
+opacity:.06;
+pointer-events:none;
+z-index:0;
+}
+
+footer > *{
+position:relative;
+z-index:1;
+}
+
+footer::before{
+content:'';
+position:absolute;
+top:-1px;
+left:15%;
+width:70%;
+height:1px;
+background:linear-gradient(90deg,transparent,rgba(201,154,77,.6),transparent);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:40px;
+margin-bottom:50px;
+}
+
+footer h3{
+color:#d4a75f;
+font-family:'Playfair Display',Georgia,serif;
+font-size:18px;
+margin-bottom:18px;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+footer p, footer a{
+color:#9a8a70;
+line-height:2.2;
+font-size:14px;
+text-decoration:none;
+display:block;
+transition:color .3s ease, transform .3s ease;
+}
+
+footer a:hover{
+color:#e8c887;
+transform:translateX(4px);
+}
+
+.footer-bottom{
+border-top:1px solid rgba(201,154,77,.12);
+padding-top:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:rgba(255,255,255,.25);
+font-size:12px;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.footer-brand .logo-text{
+margin-bottom:14px;
+}
+
+.footer-brand p{
+font-size:13px;
+line-height:1.9;
+color:#8a7a60;
+}
+
+.footer-contact-item{
+display:flex;
+align-items:center;
+gap:8px;
+line-height:1.8;
+color:#9a8a70;
+font-size:14px;
+}
+
+.footer-contact-item a{
+display:inline;
+}
+
+.footer-addr-link{
+color:#9a8a70;text-decoration:none;transition:color .3s;cursor:pointer;
+}
+.footer-addr-link:hover{color:#e8c887}
+
+.footer-contact-item .icon{
+font-size:16px;
+width:20px;
+text-align:center;
+flex-shrink:0;
 }
 
 footer::after{
@@ -851,14 +1186,14 @@ margin:0;
 .reserve-card.private select,
 .reserve-card.private textarea{
 width:100%;
-padding:14px 16px;
+padding:16px 20px;
 background:rgba(255,255,255,.06);
 border:1px solid rgba(201,154,77,.3);
 border-radius:8px;
 color:#f0ebe0;
 font-size:14px;
 font-family:'Inter',Arial,sans-serif;
-transition:border-color .3s, background .3s;
+transition:border-color .3s, background .3s, box-shadow .3s;
 box-sizing:border-box;
 }
 
@@ -868,7 +1203,7 @@ box-sizing:border-box;
 outline:none;
 border-color:#c99a4d;
 background:rgba(255,255,255,.1);
-box-shadow:0 0 0 3px rgba(201,154,77,.1);
+box-shadow:0 0 0 3px rgba(201,154,77,.25), 0 0 20px rgba(201,154,77,.12);
 }
 
 .reserve-card.private input::placeholder,
@@ -882,13 +1217,32 @@ cursor:pointer;
 appearance:none;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c99a4d' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
 background-repeat:no-repeat;
-background-position:right 14px center;
-padding-right:36px;
+background-position:right 16px center;
+padding-right:42px;
+background-color:rgba(255,255,255,.04);
+border-color:rgba(212,164,55,.35);
+color:#c99a4d;
+}
+
+.reserve-card.private select.has-value{
+color:#f0ebe0;
+}
+
+.reserve-card.private select:hover{
+border-color:rgba(212,164,55,.6);
+background-color:rgba(255,255,255,.07);
 }
 
 .reserve-card.private select option{
-background:#1a140e;
+background:#0d0a08;
 color:#f0ebe0;
+padding:14px 16px;
+}
+
+.reserve-card.private select option:hover,
+.reserve-card.private select option:checked{
+background:#1a140e;
+color:#d4a437;
 }
 
 .reserve-card.private textarea{
@@ -898,22 +1252,23 @@ min-height:80px;
 
 .reserve-card.private button[type="submit"]{
 width:100%;
-padding:16px;
-background:linear-gradient(135deg,#c99a4d,#b8862e);
+padding:18px;
+background:linear-gradient(135deg,#d4a437,#b8862e);
 border:0;
-border-radius:8px;
-font-weight:bold;
-font-size:15px;
-color:#111;
+border-radius:10px;
+font-weight:700;
+font-size:16px;
+color:#0d0a08;
 cursor:pointer;
-transition:all .3s;
+transition:all .3s ease;
 letter-spacing:.5px;
-margin-top:8px;
+margin-top:12px;
+box-shadow:0 4px 15px rgba(212,164,55,.2);
 }
 
 .reserve-card.private button[type="submit"]:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 30px rgba(201,154,77,.25);
+transform:translateY(-3px);
+box-shadow:0 10px 35px rgba(212,164,55,.35);
 }
 
 @media(max-width:600px){
@@ -935,17 +1290,21 @@ box-shadow:0 8px 30px rgba(201,154,77,.25);
 }
 .form-group i{
   position:absolute;
-  left:18px;
+  left:20px;
   top:50%;
   transform:translateY(-50%);
-  color:#d6aa58;
-  font-size:18px;
+  color:#c99a4d;
+  font-size:17px;
   z-index:10;
   pointer-events:none;
+  transition:color .3s;
+}
+.form-group:focus-within i{
+  color:#e8c887;
 }
 .form-group input,
 .form-group select{
-  height:58px;
+  height:60px;
   padding-left:55px !important;
 }
 .form-group textarea{
@@ -953,7 +1312,7 @@ box-shadow:0 8px 30px rgba(201,154,77,.25);
   padding-top:18px !important;
 }
 .form-group.textarea i{
-  top:24px;
+  top:22px;
   transform:none;
 }
 @media(max-width:768px){
@@ -962,8 +1321,12 @@ box-shadow:0 8px 30px rgba(201,154,77,.25);
 
 /* ===== GALLERY ===== */
 .gallery-section{
-  padding:80px 6%;
+  padding:100px 6% 100px;
   text-align:center;
+}
+
+section[id]:not(.hero):not(.gallery-section){
+  padding:100px 6%;
 }
 .gallery-section h2{
   font-family:'Playfair Display',Georgia,serif;
@@ -1115,12 +1478,18 @@ grid-template-columns:1fr;
 .hero h1{font-size:34px}
 .hero{padding:100px 5% 50px}
 section{padding:60px 5%}
+.gallery-section{padding:60px 5%}
+.instagram-section{padding:60px 5% 50px}
+section[id]:not(.hero):not(.gallery-section){padding:60px 5%}
 .map-container iframe{height:220px}
 }
 
 @media(max-width:400px){
 .hero h1{font-size:26px}
 section{padding:40px 4%}
+.gallery-section{padding:40px 4%}
+.instagram-section{padding:40px 4% 30px}
+section[id]:not(.hero):not(.gallery-section){padding:40px 4%}
 .map-container iframe{height:180px}
 }
 
@@ -1173,23 +1542,54 @@ input[type=number]{
 
 /* ===== CONTACT MODAL ===== */
 #contactOverlay{
-position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;
+position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;
 display:none;align-items:center;justify-content:center;
-backdrop-filter:blur(4px);
+backdrop-filter:blur(8px);
 }
 #contactOverlay.show{display:flex}
 #contactModal{
-background:linear-gradient(135deg,#1a140e,#0d0a06);
-border:1px solid #c99a4d;border-radius:12px;padding:36px 40px;
-max-width:400px;width:90%;position:relative;
-box-shadow:0 20px 60px rgba(0,0,0,.6);
+background:rgba(20,16,10,.92);
+border:1px solid rgba(201,154,77,.35);border-radius:16px;padding:44px 44px 36px;
+max-width:420px;width:92%;position:relative;
+box-shadow:0 0 40px rgba(201,154,77,.08),0 30px 80px rgba(0,0,0,.7);
+backdrop-filter:blur(16px);
 }
-#contactModal h2{color:#e8c887;margin-bottom:20px;font-family:'Playfair Display',Georgia,serif}
-#contactModal p{margin:12px 0;color:#d4c5a0;font-size:15px;line-height:1.6}
+#contactModal h2{color:#e8c887;margin-bottom:28px;font-family:'Playfair Display',Georgia,serif;font-weight:600;letter-spacing:.5px;text-align:center;font-size:22px}
+#contactModal .contact-item{
+display:flex;align-items:center;gap:14px;padding:14px 0;
+border-bottom:1px solid rgba(201,154,77,.1);
+transition:all .3s;border-radius:8px;margin:0 -8px;padding:14px 8px;
+}
+#contactModal a.contact-item{cursor:pointer}
+#contactModal a.contact-item:hover{
+background:rgba(201,154,77,.06);
+box-shadow:0 0 20px rgba(201,154,77,.08);
+}
+#contactModal .contact-item:last-of-type{border-bottom:none;padding-bottom:0;margin-bottom:0}
+#contactModal .contact-icon{
+width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+border-radius:50%;background:rgba(201,154,77,.08);color:#e8c887;
+font-size:16px;flex-shrink:0;
+box-shadow:0 0 12px rgba(201,154,77,.1);
+transition:box-shadow .3s,background .3s;
+}
+#contactModal .contact-item:hover .contact-icon{
+box-shadow:0 0 20px rgba(201,154,77,.25);
+background:rgba(201,154,77,.15);
+}
+#contactModal .contact-label{
+font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#9a8a70;margin-bottom:2px
+}
+#contactModal .contact-value{
+color:#d4c5a0;font-size:15px;text-decoration:none;transition:color .3s;display:block
+}
+#contactModal .contact-value:hover{color:#e8c887}
+#contactModal .contact-value a{color:#d4c5a0;text-decoration:none;transition:color .3s}
+#contactModal .contact-value a:hover{color:#e8c887}
 #contactModal .close{
-position:absolute;top:12px;right:16px;font-size:22px;
-cursor:pointer;color:#9a8a70;background:none;border:none;
-transition:color .3s;
+position:absolute;top:14px;right:18px;font-size:20px;
+cursor:pointer;color:#5a5040;background:none;border:none;
+transition:color .3s;line-height:1;
 }
 #contactModal .close:hover{color:#c99a4d}
 </style>
@@ -1216,11 +1616,12 @@ Arts House Maadid
 </div>
 
 <nav>
+<a href="#galerie" data-i18n="nav-gallery">Galerie</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </nav>
 
-<button class="hamburger" id="hamburger" aria-label="Menu">
+<button class="hamburger" id="hamburger" data-i18n-aria="aria-menu" aria-label="Menu">
 <span></span><span></span><span></span>
 </button>
 
@@ -1233,6 +1634,7 @@ Arts House Maadid
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
+<a href="#galerie" data-i18n="nav-gallery">Galerie</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact();document.getElementById('mobileMenu').classList.remove('show');document.getElementById('hamburger').classList.remove('active')">Contact</a>
 </div>
@@ -1246,14 +1648,12 @@ Arts House Maadid
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
-    <span class="hero-label">ARTS HOUSE MAADID • ERFOUD</span>
-
-    <h1>
-      Réservez votre expérience authentique<br>
-      à Arts House Maadid
+    <h1 data-i18n-html="hero-title">
+      Réservez votre <span class="gold">expérience</span> authentique<br>
+      <span class="gold">à</span> Arts House Maadid
     </h1>
 
-    <p>
+    <p data-i18n="hero-p">
       Découvrez l'artisanat marocain, les objets du Sahara,
       les tapis berbères et une visite privée au cœur d'Erfoud.
     </p>
@@ -1261,12 +1661,12 @@ Arts House Maadid
     <div class="hero-buttons">
       <a href="#reservation" class="hero-btn btn-gold">
         <i class="fa-regular fa-calendar-days"></i>
-        <span>Réserver maintenant</span>
+        <span data-i18n="hero-btn">Réserver maintenant</span>
       </a>
 
       <a href="#localisation" class="hero-btn btn-outline">
         <i class="fa-solid fa-location-dot"></i>
-        <span>Voir sur la carte</span>
+        <span data-i18n="hero-maps">Voir sur la carte</span>
       </a>
     </div>
   </div>
@@ -1354,16 +1754,16 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
   </div>
   <div class="form-group">
     <i class="fa-regular fa-calendar-days"></i>
-    <input name="date" type="date" required>
+    <input name="date" type="date" data-i18n-placeholder="form-date" placeholder="Date" required>
   </div>
   <div class="form-group full">
-    <i class="fa-regular fa-star"></i>
+    <i class="fa-regular fa-compass"></i>
     <select name="experience" required>
-      <option value="" data-i18n="form-exp">Type d'expérience</option>
+      <option value="" data-i18n="form-exp">✦ Type d'expérience</option>
       <option value="visite_privee" data-i18n="exp-visite">Visite privée</option>
       <option value="decouverte_artisanale" data-i18n="exp-artisanat">Découverte artisanale</option>
-      <option value="photos_souvenirs" data-i18n="exp-photos">Photos souvenirs</option>
-      <option value="the_marocain" data-i18n="exp-the">Thé marocain</option>
+      <option value="shopping_artisanal" data-i18n="exp-shopping">Shopping artisanal</option>
+      <option value="hospitalite_marocaine" data-i18n="exp-hospitalite">✨ Hospitalité marocaine</option>
     </select>
   </div>
   <div class="form-group full textarea">
@@ -1383,7 +1783,8 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 </div>
 
 <div class="guide-call">
-<p data-i18n="guide-p">📞 Vous êtes guide touristique ? Appelez-nous directement pour une réservation immédiate</p>
+<i class="fa-solid fa-concierge-bell guide-icon"></i>
+<p data-i18n="guide-p">Vous êtes guide touristique ? Appelez-nous directement pour une réservation immédiate</p>
 <a class="btn" href="tel:+212662191301" data-i18n="guide-btn">Appeler le +212 662-191301</a>
 </div>
 
@@ -1432,11 +1833,11 @@ Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.
 <h3 data-i18n="fb-form-title">Laissez un avis</h3>
 <form id="formFeedback">
 <div class="stars" id="starContainer">
-<button type="button" data-star="1" aria-label="1 étoile">★</button>
-<button type="button" data-star="2" aria-label="2 étoiles">★</button>
-<button type="button" data-star="3" aria-label="3 étoiles">★</button>
-<button type="button" data-star="4" aria-label="4 étoiles">★</button>
-<button type="button" data-star="5" aria-label="5 étoiles">★</button>
+<button type="button" data-star="1" data-i18n-aria="aria-star1" aria-label="1 étoile">★</button>
+<button type="button" data-star="2" data-i18n-aria="aria-star2" aria-label="2 étoiles">★</button>
+<button type="button" data-star="3" data-i18n-aria="aria-star3" aria-label="3 étoiles">★</button>
+<button type="button" data-star="4" data-i18n-aria="aria-star4" aria-label="4 étoiles">★</button>
+<button type="button" data-star="5" data-i18n-aria="aria-star5" aria-label="5 étoiles">★</button>
 </div>
 <input name="nom" data-i18n-placeholder="fb-nom" placeholder="Votre nom" required>
 <textarea name="message" rows="3" data-i18n-placeholder="fb-msg" placeholder="Votre avis" required></textarea>
@@ -1477,15 +1878,17 @@ Arts House Maadid
 
 <div>
 <h3 data-i18n="footer-nav-title">Navigation</h3>
+<a href="#galerie" data-i18n="nav-gallery">Galerie</a>
 <a href="#reservation" data-i18n="nav-res">Réservation</a>
 <a href="javascript:void(0)" data-i18n="nav-contact" onclick="openContact()">Contact</a>
 </div>
 
 <div>
 <h3 data-i18n="footer-contact-title">Contact</h3>
-<p>📍 <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
-<p><a href="tel:+212662191301" style="color:#9a8a70;text-decoration:none">📞 +212 6 62 19 13 01</a> <a href="mailto:artshousemaadid@gmail.com" style="color:#9a8a70;text-decoration:none">📧 artshousemaadid@gmail.com</a></p>
-<p>🕐 <span data-i18n="footer-hours">Lun - Sam : 9h - 19h</span></p>
+<p class="footer-contact-item"><span class="icon">📍</span> <a href="https://maps.app.goo.gl/MfeugWfhLzXii5796?g_st=ic" target="_blank" class="footer-addr-link" data-i18n="footer-addr">Erfoud, Maroc</a></p>
+<p class="footer-contact-item"><span class="icon">📞</span> <a href="tel:+212662191301">+212 6 62 19 13 01</a></p>
+<p class="footer-contact-item"><span class="icon">📧</span> <a href="mailto:artshousemaadid@gmail.com">artshousemaadid@gmail.com</a></p>
+<p class="footer-contact-item"><span class="icon">🕐</span> <span data-i18n="footer-hours">Lun - Sam : 9h - 19h</span></p>
 </div>
 
 </div>
@@ -1529,7 +1932,7 @@ document.getElementById('formNormal').addEventListener('submit', async function(
   const btn = this.querySelector('button[type="submit"]');
   const origText = btn.innerHTML;
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
+  btn.innerHTML = '<span class="spinner"></span> ' + (i18n[localStorage.getItem('lang')||'FR']['loading-btn'] || 'Envoi en cours...');
   const fd = new FormData(this);
   const data = Object.fromEntries(fd);
   try {
@@ -1556,7 +1959,7 @@ document.getElementById('formNormal').addEventListener('submit', async function(
     showToast(i18n[localStorage.getItem('lang')||'FR']['toast-err'] + ': ' + json.error, true);
   }
   } catch (err) {
-    showToast('Erreur réseau', true);
+    showToast(i18n[localStorage.getItem('lang')||'FR']['err-network'] || 'Erreur réseau', true);
   } finally {
     btn.disabled = false;
     btn.innerHTML = origText;
@@ -1639,30 +2042,32 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 const i18n = {
   FR: {
     'logo-sub':'Artisanat marocain • Erfoud',
-    'nav-res':'Réservation','nav-contact':'Contact',
-    'hero-line1':'Réservez votre','hero-line2':'expérience authentique','hero-line3':'à Arts House Maadid',
-    'hero-p':'Plongez au cœur de l\'artisanat marocain : céramique traditionnelle, objets du Sahara, tapis berbères et visites privées dans un espace d\'exception au cœur d\'Erfoud.',
-    'hero-btn':'Réserver maintenant','hero-maps':'Google Maps',
-    'hero-ornament':'Art du savoir-faire marocain',
+    'nav-res':'Réservation','nav-contact':'Contact','nav-gallery':'Galerie',
+    'hero-title':'Réservez votre <span class="gold">expérience</span> authentique<br><span class="gold">à</span> Arts House Maadid',
+    'hero-p':'Découvrez l\'artisanat marocain, les objets du Sahara, les tapis berbères et une visite privée au cœur d\'Erfoud.',
+    'hero-btn':'Réserver maintenant','hero-maps':'Voir sur la carte',
+    'loading-btn':'Envoi en cours...','err-network':'Erreur réseau',
+    'fb-note-required':'Veuillez sélectionner une note',
+    'aria-menu':'Menu',
+    'aria-star1':'1 étoile','aria-star2':'2 étoiles','aria-star3':'3 étoiles','aria-star4':'4 étoiles','aria-star5':'5 étoiles',
     'gal-title':'Galerie Photos',
     'gal-sub':'Découvrez notre univers en images',
-    'gallery-title':'Notre Espace',
-    'gallery-sub':'Découvrez l\'authenticité de notre maison d\'artisanat à travers ces moments capturés dans notre espace traditionnel.',
     'res-title':'Réservation',
     'res-sub':'Choisissez le type de réservation adapté à votre visite. Chaque expérience est personnalisée pour vous offrir un moment unique.',
     'res-badge':'✦ Réservation rapide','res-card-title':'Réservation normale',
     'res-card-p':'Pour visiteurs individuels, familles, amis et groupes de 1 à 150 personnes.',
     'form-nom':'Nom complet','form-tel':'Téléphone / WhatsApp','form-email':'Email',
-    'form-nb':'Nombre de personnes','form-exp':'Type d\'expérience',
-    'exp-visite':'Visite privée','exp-artisanat':'Découverte artisanale','exp-photos':'Photos souvenirs','exp-the':'Thé marocain',
+    'form-nb':'Nombre de personnes','form-date':'Date',
+    'form-exp':'✦ Type d\'expérience',
+    'exp-visite':'Visite privée','exp-artisanat':'Découverte artisanale','exp-shopping':'Shopping artisanal','exp-hospitalite':'✨ Hospitalité marocaine',
     'form-msg':'Message optionnel','form-submit':'Réserver maintenant',
     'testimonial-p':'« Un accueil chaleureux et un savoir-faire exceptionnel. Une immersion totale dans l\'artisanat marocain authentique. »',
-    'testimonial-cite':'— Fatima Z., Voyageuse',
-    'guide-p':'📞 Vous êtes guide touristique ? Appelez-nous directement pour une réservation immédiate',
-    'guide-btn':'Appeler le +212 662-191301',
+    'guide-p':'Guide touristique ou agence ? Appelez-nous pour une réservation prioritaire.',
+    'guide-btn':'Appeler maintenant',
     'footer-desc':'Espaces traditionnels dédiés à la préservation et la promotion de l\'artisanat marocain. Objets du Sahara, céramique, tapis et visites guidées.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Maroc','footer-hours':'Tous les jours sauf ven : 9h - 21h',
+    'footer-addr-label':'Adresse','footer-hours-label':'Horaires',
     'footer-copy':'© 2026 Arts House Maadid — Tous droits réservés',
     'footer-tag':'Artisanat marocain traditionnel',
     'toast-ok':'✓ Réservation envoyée avec succès','toast-err':'✗ Erreur',
@@ -1673,30 +2078,32 @@ const i18n = {
   },
   EN: {
     'logo-sub':'Moroccan crafts • Erfoud',
-    'nav-res':'Booking','nav-contact':'Contact',
-    'hero-line1':'Book your','hero-line2':'authentic experience','hero-line3':'at Arts House Maadid',
-    'hero-p':'Immerse yourself in Moroccan craftsmanship: traditional ceramics, Sahara artifacts, Berber rugs and private tours in an exceptional space in the heart of Erfoud.',
-    'hero-btn':'Book now','hero-maps':'Google Maps',
-    'hero-ornament':'Art of Moroccan craftsmanship',
+    'nav-res':'Booking','nav-contact':'Contact','nav-gallery':'Gallery',
+    'hero-title':'Book your <span class="gold">experience</span><br><span class="gold">at</span> Arts House Maadid',
+    'hero-p':'Discover Moroccan craftsmanship, Sahara artifacts, Berber rugs and a private tour in the heart of Erfoud.',
+    'hero-btn':'Book now','hero-maps':'View on map',
+    'loading-btn':'Sending...','err-network':'Network error',
+    'fb-note-required':'Please select a rating',
+    'aria-menu':'Menu',
+    'aria-star1':'1 star','aria-star2':'2 stars','aria-star3':'3 stars','aria-star4':'4 stars','aria-star5':'5 stars',
     'gal-title':'Photo Gallery',
     'gal-sub':'Discover our world in pictures',
-    'gallery-title':'Our Space',
-    'gallery-sub':'Discover the authenticity of our craft house through these moments captured in our traditional space.',
     'res-title':'Booking',
     'res-sub':'Choose the type of booking that suits your visit. Each experience is personalized to offer you a unique moment.',
     'res-badge':'✦ Quick booking','res-card-title':'Regular booking',
     'res-card-p':'For individual visitors, families, friends and groups of 1 to 150 people.',
     'form-nom':'Full name','form-tel':'Phone / WhatsApp','form-email':'Email',
-    'form-nb':'Number of people','form-exp':'Experience type',
-    'exp-visite':'Private tour','exp-artisanat':'Craft discovery','exp-photos':'Souvenir photos','exp-the':'Moroccan tea',
+    'form-nb':'Number of people','form-date':'Date',
+    'form-exp':'✦ Experience type',
+    'exp-visite':'Private tour','exp-artisanat':'Craft discovery','exp-shopping':'Artisanal shopping','exp-hospitalite':'✨ Moroccan hospitality',
     'form-msg':'Optional message','form-submit':'Book now',
     'testimonial-p':'« A warm welcome and exceptional know-how. A total immersion in authentic Moroccan craftsmanship. »',
-    'testimonial-cite':'— Fatima Z., Traveler',
-    'guide-p':'📞 Are you a tour guide? Call us directly for an immediate booking',
-    'guide-btn':'Call +212 662-191301',
+    'guide-p':'Tour guide or agency? Call us directly for priority reservation.',
+    'guide-btn':'Call now',
     'footer-desc':'Traditional spaces dedicated to preserving and promoting Moroccan craftsmanship. Sahara artifacts, ceramics, rugs and guided tours.',
     'footer-nav-title':'Navigation','footer-contact-title':'Contact',
     'footer-addr':'Erfoud, Morocco','footer-hours':'Every day except Fri : 9am - 9pm',
+    'footer-addr-label':'Address','footer-hours-label':'Hours',
     'footer-copy':'© 2026 Arts House Maadid — All rights reserved',
     'footer-tag':'Traditional Moroccan craftsmanship',
     'toast-ok':'✓ Booking sent successfully','toast-err':'✗ Error',
@@ -1707,30 +2114,32 @@ const i18n = {
   },
   ES: {
     'logo-sub':'Artesanía marroquí • Erfoud',
-    'nav-res':'Reserva','nav-contact':'Contacto',
-    'hero-line1':'Reserve su','hero-line2':'experiencia auténtica','hero-line3':'en Arts House Maadid',
-    'hero-p':'Sumérjase en la artesanía marroquí: cerámica tradicional, objetos del Sáhara, alfombras bereberes y visitas privadas en un espacio excepcional en el corazón de Erfoud.',
-    'hero-btn':'Reservar ahora','hero-maps':'Google Maps',
-    'hero-ornament':'Arte de la artesanía marroquí',
+    'nav-res':'Reserva','nav-contact':'Contacto','nav-gallery':'Galería',
+    'hero-title':'Reserve su <span class="gold">experiencia</span> auténtica<br><span class="gold">en</span> Arts House Maadid',
+    'hero-p':'Descubra la artesanía marroquí, los objetos del Sáhara, las alfombras bereberes y una visita privada en el corazón de Erfoud.',
+    'hero-btn':'Reservar ahora','hero-maps':'Ver en mapa',
+    'loading-btn':'Enviando...','err-network':'Error de red',
+    'fb-note-required':'Seleccione una calificación',
+    'aria-menu':'Menú',
+    'aria-star1':'1 estrella','aria-star2':'2 estrellas','aria-star3':'3 estrellas','aria-star4':'4 estrellas','aria-star5':'5 estrellas',
     'gal-title':'Galería de Fotos',
     'gal-sub':'Descubre nuestro mundo en imágenes',
-    'gallery-title':'Nuestro Espacio',
-    'gallery-sub':'Descubra la autenticidad de nuestra casa de artesanía a través de estos momentos capturados en nuestro espacio tradicional.',
     'res-title':'Reserva',
     'res-sub':'Elija el tipo de reserva que se adapte a su visita. Cada experiencia está personalizada para ofrecerle un momento único.',
     'res-badge':'✦ Reserva rápida','res-card-title':'Reserva normal',
     'res-card-p':'Para visitantes individuales, familias, amigos y grupos de 1 a 150 personas.',
     'form-nom':'Nombre completo','form-tel':'Teléfono / WhatsApp','form-email':'Correo',
-    'form-nb':'Número de personas','form-exp':'Tipo de experiencia',
-    'exp-visite':'Visita privada','exp-artisanat':'Descubrimiento artesanal','exp-photos':'Fotos recuerdo','exp-the':'Té marroquí',
+    'form-nb':'Número de personas','form-date':'Fecha',
+    'form-exp':'✦ Tipo de experiencia',
+    'exp-visite':'Visita privada','exp-artisanat':'Descubrimiento artesanal','exp-shopping':'Compras artesanales','exp-hospitalite':'✨ Hospitalidad marroquí',
     'form-msg':'Mensaje opcional','form-submit':'Reservar ahora',
     'testimonial-p':'« Una cálida bienvenida y un saber hacer excepcional. Una inmersión total en la auténtica artesanía marroquí. »',
-    'testimonial-cite':'— Fatima Z., Viajera',
-    'guide-p':'📞 ¿Es guía turístico? Llámenos directamente para una reserva inmediata',
-    'guide-btn':'Llamar al +212 662-191301',
+    'guide-p':'¿Guía turístico o agencia? Llámenos para una reserva prioritaria.',
+    'guide-btn':'Llamar ahora',
     'footer-desc':'Espacios tradicionales dedicados a la preservación y promoción de la artesanía marroquí. Objetos del Sáhara, cerámica, alfombras y visitas guiadas.',
     'footer-nav-title':'Navegación','footer-contact-title':'Contacto',
     'footer-addr':'Erfoud, Marruecos','footer-hours':'Todos los días excepto vie : 9h - 21h',
+    'footer-addr-label':'Dirección','footer-hours-label':'Horario',
     'footer-copy':'© 2026 Arts House Maadid — Todos los derechos reservados',
     'footer-tag':'Artesanía marroquí tradicional',
     'toast-ok':'✓ Reserva enviada con éxito','toast-err':'✗ Error',
@@ -1748,12 +2157,20 @@ function setLang(lang) {
     const key = el.getAttribute('data-i18n');
     if (t[key]) el.textContent = t[key];
   });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key]) el.innerHTML = t[key];
+  });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
     if (t[key]) el.placeholder = t[key];
   });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria');
+    if (t[key]) el.setAttribute('aria-label', t[key]);
+  });
   document.querySelectorAll('.lang-switch a').forEach(a => {
-    a.classList.toggle('active', a.textContent === lang);
+    a.classList.toggle('active', a.textContent.trim() === lang);
   });
   localStorage.setItem('lang', lang);
 }
@@ -1767,6 +2184,13 @@ document.querySelectorAll('.lang-switch a').forEach(a => {
 
 const saved = localStorage.getItem('lang') || 'FR';
 setLang(saved);
+
+// Select color toggle
+document.querySelectorAll('select[name="experience"]').forEach(el => {
+  el.addEventListener('change', () => {
+    el.classList.toggle('has-value', el.value !== '');
+  });
+});
 
 // ===== FEEDBACK =====
 let fbNote = 0;
@@ -1782,7 +2206,7 @@ document.querySelectorAll('#starContainer button').forEach(b => {
 
 document.getElementById('formFeedback')?.addEventListener('submit', async function(e) {
   e.preventDefault();
-  if (!fbNote) { showToast('Veuillez sélectionner une note', true); return; }
+  if (!fbNote) { showToast(i18n[localStorage.getItem('lang')||'FR']['fb-note-required'] || 'Veuillez sélectionner une note', true); return; }
   const fd = new FormData(this);
   const data = Object.fromEntries(fd);
   const res = await fetch('/api/feedback', {
@@ -1861,9 +2285,34 @@ btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth
 <div id="contactModal">
 <button class="close" onclick="closeContact()">&times;</button>
 <h2 data-i18n="nav-contact">Contact</h2>
-<p>📍 <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
-<p><a href="tel:+212662191301" style="color:#9a8a70;text-decoration:none">📞 +212 6 62 19 13 01</a> <a href="mailto:artshousemaadid@gmail.com" style="color:#9a8a70;text-decoration:none">📧 artshousemaadid@gmail.com</a></p>
-<p>🕐 <span data-i18n="footer-hours">Tous les jours sauf ven : 9h - 21h</span></p>
+<a href="https://maps.app.goo.gl/MfeugWfhLzXii5796?g_st=ic" target="_blank" class="contact-item" style="text-decoration:none;color:inherit">
+  <div class="contact-icon"><i class="fa-solid fa-map-pin"></i></div>
+  <div>
+    <div class="contact-label" data-i18n="footer-addr-label">Adresse</div>
+    <div class="contact-value" data-i18n="footer-addr">Erfoud, Maroc</div>
+  </div>
+</a>
+<a href="tel:+212662191301" class="contact-item" style="text-decoration:none;color:inherit">
+  <div class="contact-icon"><i class="fa-regular fa-phone"></i></div>
+  <div>
+    <div class="contact-label">Téléphone</div>
+    <div class="contact-value">+212 6 62 19 13 01</div>
+  </div>
+</a>
+<a href="mailto:artshousemaadid@gmail.com" class="contact-item" style="text-decoration:none;color:inherit">
+  <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+  <div>
+    <div class="contact-label">Email</div>
+    <div class="contact-value">artshousemaadid@gmail.com</div>
+  </div>
+</a>
+<div class="contact-item">
+  <div class="contact-icon"><i class="fa-regular fa-clock"></i></div>
+  <div>
+    <div class="contact-label" data-i18n="footer-hours-label">Horaires</div>
+    <div class="contact-value" data-i18n="footer-hours">Tous les jours sauf ven : 9h - 21h</div>
+  </div>
+</div>
 </div>
 </div>
 <script>

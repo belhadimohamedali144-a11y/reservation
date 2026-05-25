@@ -39,6 +39,7 @@ async function initDB() {
       nom VARCHAR(255) NOT NULL,
       message TEXT NOT NULL,
       note INTEGER NOT NULL,
+      approved BOOLEAN DEFAULT false,
       created_at TIMESTAMP DEFAULT NOW()
     )
   `);
@@ -54,6 +55,9 @@ async function initDB() {
 
   await query(`ALTER TABLE reservations ALTER COLUMN nombre_personnes TYPE VARCHAR(50)`).catch(() => {});
   await query(`ALTER TABLE reservations ALTER COLUMN nombre_visiteurs TYPE VARCHAR(50)`).catch(() => {});
+
+  await query(`ALTER TABLE feedback ADD COLUMN IF NOT EXISTS approved BOOLEAN DEFAULT false`).catch(() => {});
+  await query(`UPDATE feedback SET approved = true WHERE approved IS NULL`).catch(() => {});
 
   console.log('Tables PostgreSQL prêtes');
 }

@@ -8,28 +8,20 @@ services:
     environment:
       - NODE_ENV=production
       - DB_HOST=postgres_db
-      - DB_USER=myuser
-      - DB_PASSWORD=123
-      - DB_NAME=reservation_db
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=reservation
       - DB_PORT=5432
-      - SMTP_USER=artshousemaadid@gmail.com
-      - SMTP_PASS=${SMTP_PASS}
-      - ADMIN_EMAIL=artshousemaadid@gmail.com
     depends_on:
       - postgres_db
 
   postgres_db:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     container_name: postgres_db
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: reservation_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: reservation
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
