@@ -175,7 +175,10 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
-db.initDB().then(() => {
+db.initDB().catch(err => {
+  console.error('⚠ DB init failed:', err.message);
+  console.error(' Le site sera servi sans accès base de données.');
+}).finally(() => {
   app.listen(PORT, () => {
     console.log(`Serveur démarré sur http://localhost:${PORT}`);
   });

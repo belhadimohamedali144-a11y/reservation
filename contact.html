@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Arts House Maadid</title>
+<link rel="icon" type="image/jpeg" href="/image/logo.jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:#050505;
+  color:#ddd;
+  font-family:'Inter',Arial,sans-serif;
+  line-height:1.6;
+  padding-top:70px;
+}
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:9999;
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,154,77,.25);
+  display:flex;
+  align-items:center;
+  padding:0 24px;
+  height:70px;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  width:100%;
+  max-width:1300px;
+  margin:0 auto;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  flex-shrink:0;
+}
+.logo img{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:2px solid #c89b4a;
+  object-fit:cover;
+}
+.logo-text{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:15px;
+  color:#e8c887;
+  line-height:1.2;
+}
+.logo-text small{
+  display:block;
+  font-size:9px;
+  color:#a08050;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+nav{
+  display:flex;
+  flex:1;
+  justify-content:center;
+  gap:6px;
+}
+nav a{
+  color:#bbb;
+  text-decoration:none;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.3px;
+  transition:all .3s;
+  border-radius:6px;
+  position:relative;
+}
+nav a:hover{color:#e8c887;background:rgba(201,154,77,.06)}
+nav a.active{
+  color:#e8c887;
+  background:rgba(201,154,77,.1);
+}
+nav a.active::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:20px;
+  height:2px;
+  background:#c99a4d;
+  border-radius:2px;
+}
+.lang-switch{
+  display:flex;
+  gap:4px;
+  margin-left:auto;
+  flex-shrink:0;
+}
+.lang-switch a{
+  color:#6f4d22;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+  padding:4px 8px;
+  border:1px solid #3b2c18;
+  border-radius:4px;
+  transition:all .3s;
+}
+.lang-switch a.active{
+  color:#e8c887;
+  border-color:#c99a4d;
+  background:rgba(201,154,77,.1);
+}
+.lang-switch a:hover:not(.active){
+  color:#9a8a70;
+  border-color:#5b4525;
+}
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:5px;
+  background:none;
+  border:none;
+  padding:4px;
+  margin-left:16px;
+}
+.hamburger span{
+  width:24px;height:2px;
+  background:#c99a4d;
+  border-radius:2px;
+  transition:all .3s;
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:70px;left:0;width:100%;
+  background:rgba(5,5,5,.98);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #c99a4d;
+  flex-direction:column;
+  padding:20px 6%;
+  z-index:9998;
+}
+.mobile-menu.show{display:flex}
+.mobile-menu a{
+  color:#ddd;
+  text-decoration:none;
+  padding:14px 0;
+  font-size:15px;
+  font-weight:500;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition:color .3s;
+}
+.mobile-menu a:hover{color:#e8c887}
+.mobile-menu a.active{color:#e8c887}
+/* ===== HERO ===== */
+.contact-hero{
+  position:relative;
+  min-height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:url('image/WhatsApp Image 2026-05-24 at 18.16.21.jpeg') center/cover fixed;
+}
+.contact-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.8) 100%);
+  z-index:1;
+}
+.contact-hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+  z-index:2;
+}
+.contact-hero-content{
+  position:relative;
+  z-index:2;
+  padding:40px 20px;
+  max-width:800px;
+}
+.contact-hero-label{
+  display:inline-block;
+  color:#c99a4d;
+  font-size:12px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+  font-weight:600;
+}
+.contact-hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(36px,6vw,72px);
+  color:#f0e6d0;
+  line-height:1.08;
+  margin-bottom:18px;
+  font-weight:700;
+}
+.contact-hero h1 span{color:#c99a4d}
+.contact-hero p{
+  font-size:clamp(15px,1.2vw,19px);
+  color:#d4c5a0;
+  max-width:600px;
+  margin:0 auto;
+  font-weight:300;
+  line-height:1.8;
+}
+.hero-divider{
+  width:60px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+  margin:18px auto 0;
+}
+/* ===== SECTION HEADERS ===== */
+section{padding:80px 6%}
+.section-header{
+  text-align:center;
+  margin-bottom:50px;
+}
+.section-header .ornament{
+  color:#c99a4d;
+  font-size:11px;
+  letter-spacing:8px;
+  margin-bottom:8px;
+  opacity:.6;
+}
+.section-header h2{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(28px,3.5vw,42px);
+  color:#e8c887;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.section-header p{
+  color:#b5a892;
+  font-size:14px;
+  max-width:520px;
+  margin:0 auto;
+  font-weight:300;
+}
+.section-line{
+  width:50px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+  margin:12px auto 0;
+}
+/* ===== CONTACT CARDS ===== */
+.contact-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto 60px;
+}
+.contact-card{
+  text-align:center;
+  padding:40px 24px 36px;
+  border-radius:16px;
+  border:1px solid rgba(201,154,77,.15);
+  background:linear-gradient(160deg,rgba(15,12,8,.9),rgba(10,8,6,.6));
+  backdrop-filter:blur(8px);
+  transition:all .5s cubic-bezier(.25,.46,.45,.94);
+  position:relative;
+  overflow:hidden;
+}
+.contact-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:25%;right:25%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+  opacity:0;
+  transition:opacity .5s;
+}
+.contact-card:hover::before{opacity:1}
+.contact-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(201,154,77,.35);
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+.card-icon{
+  width:64px;height:64px;
+  border-radius:50%;
+  margin:0 auto 18px;
+  border:1px solid rgba(201,154,77,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#c99a4d;
+  transition:all .5s;
+}
+.contact-card:hover .card-icon{
+  border-color:#c99a4d;
+  background:rgba(201,154,77,.08);
+  transform:scale(1.1);
+}
+.contact-card h3{
+  color:#e8c887;
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.contact-card p,.contact-card a{
+  color:#b5a892;
+  font-size:14px;
+  font-weight:300;
+  text-decoration:none;
+  transition:color .3s;
+}
+.contact-card a:hover{color:#e8c887}
+/* ===== FORM + MAP ===== */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:36px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.form-card{
+  border:1px solid rgba(201,154,77,.15);
+  border-radius:20px;
+  padding:44px 36px;
+  background:rgba(10,8,6,.85);
+  backdrop-filter:blur(8px);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  position:relative;
+}
+.form-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:10%;right:10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#c99a4d,transparent);
+}
+.form-card h3{
+  color:#e8c887;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.form-card .form-sub{
+  color:#b5a892;
+  font-size:13px;
+  margin-bottom:24px;
+  font-weight:300;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.form-group{position:relative}
+.form-group.full{grid-column:1/-1}
+.form-group i{
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#d6aa58;
+  font-size:17px;
+  z-index:10;
+  pointer-events:none;
+}
+.form-group input,.form-group select{
+  width:100%;
+  height:54px;
+  padding-left:52px !important;
+  padding-right:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,154,77,.2);
+  border-radius:10px;
+  color:#f0ebe0;
+  font-size:14px;
+  font-family:'Inter',Arial,sans-serif;
+  outline:none;
+  transition:all .35s;
+}
+.form-group textarea{
+  width:100%;
+  height:120px;
+  padding-left:52px !important;
+  padding-top:16px !important;
+  padding-right:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,154,77,.2);
+  border-radius:10px;
+  color:#f0ebe0;
+  font-size:14px;
+  font-family:'Inter',Arial,sans-serif;
+  outline:none;
+  transition:all .35s;
+  resize:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:#c99a4d;
+  box-shadow:0 0 0 3px rgba(201,154,77,.08);
+  background:rgba(255,255,255,.06);
+}
+.form-group select{
+  cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c99a4d' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  padding-right:36px !important;
+}
+.form-group select option{background:#1a140e;color:#f0ebe0}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.4)}
+.form-group.textarea i{top:20px;transform:none}
+.btn-submit{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:10px;
+  margin-top:8px;
+  background:linear-gradient(135deg,#c99a4d,#b8862e);
+  color:#111;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .35s;
+  letter-spacing:.5px;
+  font-family:'Inter',Arial,sans-serif;
+}
+.btn-submit:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(201,154,77,.25);
+}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.map-card{
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(201,154,77,.15);
+  min-height:400px;
+  height:100%;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+.map-card iframe{
+  width:100%;
+  height:100%;
+  min-height:400px;
+  display:block;
+  filter:grayscale(1) invert(.9) hue-rotate(180deg);
+}
+/* ===== WHY VISIT ===== */
+.why-section{
+  background:rgba(8,6,4,.5);
+  border-top:1px solid rgba(201,154,77,.06);
+  border-bottom:1px solid rgba(201,154,77,.06);
+}
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.why-card{
+  text-align:center;
+  padding:32px 20px 28px;
+  border-radius:14px;
+  border:1px solid rgba(201,154,77,.08);
+  transition:all .4s;
+  position:relative;
+}
+.why-card:hover{
+  background:rgba(201,154,77,.03);
+  border-color:rgba(201,154,77,.2);
+  transform:translateY(-3px);
+}
+.why-card-num{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:28px;
+  font-weight:700;
+  color:rgba(201,154,77,.15);
+  position:absolute;
+  top:12px;
+  right:16px;
+  line-height:1;
+}
+.why-card-icon{
+  width:56px;height:56px;
+  border-radius:50%;
+  margin:0 auto 16px;
+  border:1px solid rgba(201,154,77,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  color:#c99a4d;
+  transition:all .4s;
+}
+.why-card:hover .why-card-icon{
+  border-color:#c99a4d;
+  background:rgba(201,154,77,.06);
+}
+.why-card h4{
+  color:#e8c887;
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.why-card p{
+  color:#b5a892;
+  font-size:13px;
+  line-height:1.7;
+  font-weight:300;
+}
+/* ===== GALLERY ===== */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:10px;
+  border:1px solid rgba(201,154,77,.08);
+  transition:all .5s;
+  cursor:pointer;
+}
+.gallery-grid img:hover{
+  transform:scale(1.04);
+  border-color:#c99a4d;
+  box-shadow:0 12px 30px rgba(0,0,0,.45);
+}
+/* ===== FOOTER ===== */
+footer{
+  background:#030202;
+  border-top:1px solid rgba(201,154,77,.08);
+  padding:60px 6% 30px;
+  position:relative;
+}
+footer::before{
+  content:'';
+  position:absolute;
+  top:0;left:10%;right:10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,154,77,.2),transparent);
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:36px;
+}
+.footer-brand .logo-text{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:18px;
+  color:#e8c887;
+  margin-bottom:12px;
+}
+.footer-brand .logo-text span{
+  display:block;
+  font-size:11px;
+  color:#a08050;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.footer-brand p{
+  color:#9a8a70;
+  font-size:13px;
+  line-height:1.8;
+  font-weight:300;
+}
+.footer-grid h3{
+  color:#c99a4d;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+.footer-grid a{
+  color:#9a8a70;
+  font-size:13px;
+  text-decoration:none;
+  display:block;
+  line-height:2.2;
+  transition:color .3s;
+  font-weight:300;
+}
+.footer-grid a:hover{color:#e8c887}
+.footer-grid p{
+  color:#9a8a70;
+  font-size:13px;
+  line-height:2;
+  font-weight:300;
+}
+.footer-grid p a{
+  display:inline;
+  line-height:inherit;
+}
+.footer-bottom{
+  margin-top:30px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.03);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  font-size:12px;
+  color:#5a4a30;
+  font-weight:300;
+}
+/* ===== TOAST ===== */
+#toast{
+  position:fixed;
+  bottom:-80px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#1a140e,#0d0a06);
+  border:1px solid #c99a4d;
+  padding:16px 32px;
+  border-radius:8px;
+  color:#e8c887;
+  font-size:14px;
+  z-index:99999;
+  transition:bottom .4s ease;
+  min-width:280px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.5);
+}
+#toast.show{bottom:30px}
+#toast.error{border-color:#6a2a2a;color:#e66}
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  nav a{padding:8px 10px;font-size:12px}
+}
+@media(max-width:900px){
+  nav{display:none}
+  .hamburger{display:flex}
+  .lang-switch{margin-left:0}
+  .contact-cards,.contact-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .contact-hero{min-height:50vh}
+  .form-card{padding:28px 20px}
+  section{padding:60px 5%}
+}
+@media(max-width:600px){
+  .why-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+<div class="header-inner">
+<a href="/" class="logo">
+<img src="image/logo.jpeg" alt="Arts House Maadid">
+<div class="logo-text">
+Arts House Maadid
+<small>Artisanat marocain &bull; Erfoud</small>
+</div>
+</a>
+
+<nav>
+<a href="/">Accueil</a>
+<a href="/#galerie">Galerie</a>
+<a href="#">Boutique</a>
+<a href="#">&Agrave; propos</a>
+<a href="/#reservation">R&eacute;servation</a>
+<a href="contact.html" class="active">Contact</a>
+</nav>
+
+<div class="lang-switch">
+<a href="#" class="active" data-lang="fr">FR</a>
+<a href="#" data-lang="en">EN</a>
+<a href="#" data-lang="es">ES</a>
+</div>
+
+<button class="hamburger" id="hamburger" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="/">Accueil</a>
+<a href="/#galerie">Galerie</a>
+<a href="#">Boutique</a>
+<a href="#">&Agrave; propos</a>
+<a href="/#reservation">R&eacute;servation</a>
+<a href="contact.html" class="active">Contact</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="contact-hero">
+<div class="contact-hero-content">
+<div class="contact-hero-label">ARTS HOUSE MAADID</div>
+<h1><span data-i18n="hero-title">Contactez-nous</span></h1>
+<p data-i18n="hero-sub">Nous sommes &agrave; votre &eacute;coute pour r&eacute;pondre &agrave; toutes vos questions et organiser votre exp&eacute;rience authentique au c&#339;ur de l&rsquo;artisanat marocain.</p>
+<div class="hero-divider"></div>
+</div>
+</section>
+
+<!-- ===== CONTACT CARDS ===== -->
+<section>
+<div class="contact-cards">
+
+<div class="contact-card">
+<div class="card-icon"><i class="fa-solid fa-phone"></i></div>
+<h3 data-i18n="card-phone">T&eacute;l&eacute;phone / WhatsApp</h3>
+<p><a href="tel:+212662191301">+212 6 62 19 13 01</a></p>
+<p><a href="https://wa.me/212662191301" target="_blank" style="color:#c99a4d">WhatsApp <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></a></p>
+</div>
+
+<div class="contact-card">
+<div class="card-icon"><i class="fa-regular fa-envelope"></i></div>
+<h3 data-i18n="card-email">Email</h3>
+<p><a href="mailto:contact@artshousemaadid.com">contact@artshousemaadid.com</a></p>
+</div>
+
+<div class="contact-card">
+<div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+<h3 data-i18n="card-address">Adresse</h3>
+<p data-i18n="card-address-val">Erfoud, Maroc</p>
+</div>
+
+</div>
+
+<!-- ===== FORM + MAP ===== -->
+<div class="contact-grid">
+
+<div class="form-card">
+<h3 data-i18n="form-title">Envoyez-nous un message</h3>
+<p class="form-sub" data-i18n="form-sub">Remplissez le formulaire et nous vous r&eacute;pondrons rapidement.</p>
+<form id="formContact">
+<div class="form-grid">
+<div class="form-group full">
+<i class="fa-regular fa-user"></i>
+<input type="text" name="nom" data-i18n-placeholder="form-nom" placeholder="Votre nom" required>
+</div>
+<div class="form-group full">
+<i class="fa-regular fa-envelope"></i>
+<input type="email" name="email" data-i18n-placeholder="form-email" placeholder="Votre email" required>
+</div>
+<div class="form-group full">
+<i class="fa-regular fa-star"></i>
+<select name="sujet" required>
+<option value="" disabled selected data-i18n="form-sujet">Choisissez un sujet</option>
+<option value="reservation" data-i18n="form-sujet-reservation">R&eacute;servation</option>
+<option value="information" data-i18n="form-sujet-info">Demande d&rsquo;information</option>
+<option value="partenariat" data-i18n="form-sujet-partenariat">Partenariat / Agence</option>
+<option value="autre" data-i18n="form-sujet-autre">Autre</option>
+</select>
+</div>
+<div class="form-group full textarea">
+<i class="fa-regular fa-message"></i>
+<textarea name="message" rows="4" data-i18n-placeholder="form-message" placeholder="Votre message" required></textarea>
+</div>
+</div>
+<button type="submit" class="btn-submit" data-i18n="form-submit">Envoyer le message</button>
+</form>
+</div>
+
+<div class="map-card">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3393.5323984606214!2d-4.2185001!3d31.4665748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdf0204618a995db%3A0xb013e04043fd2dfa!2sARTS%20HOUSE%20MAADIDE!5e0!3m2!1sfr!2sma!4v1715978000000!5m2!1sfr!2sma" loading="lazy" allowfullscreen></iframe>
+</div>
+
+</div>
+</section>
+
+<!-- ===== WHY VISIT ===== -->
+<section class="why-section">
+<div class="section-header">
+<div class="ornament">&loz; &loz; &loz;</div>
+<h2 data-i18n="why-title">Pourquoi nous rendre visite ?</h2>
+<p data-i18n="why-sub">Une exp&eacute;rience unique au c&#339;ur de l&rsquo;artisanat marocain</p>
+<div class="section-line"></div>
+</div>
+<div class="why-grid">
+
+<div class="why-card">
+<span class="why-card-num">01</span>
+<div class="why-card-icon"><i class="fa-solid fa-kaaba"></i></div>
+<h4 data-i18n="why-1-title">Exp&eacute;rience authentique</h4>
+<p data-i18n="why-1-desc">Plongez dans l&rsquo;artisanat marocain traditionnel au cœur d&rsquo;un espace d&rsquo;exception.</p>
+</div>
+
+<div class="why-card">
+<span class="why-card-num">02</span>
+<div class="why-card-icon"><i class="fa-solid fa-hands"></i></div>
+<h4 data-i18n="why-2-title">Produits artisanaux</h4>
+<p data-i18n="why-2-desc">D&eacute;couvrez notre collection de pi&egrave;ces uniques faites &agrave; la main par des artisans locaux.</p>
+</div>
+
+<div class="why-card">
+<span class="why-card-num">03</span>
+<div class="why-card-icon"><i class="fa-solid fa-star"></i></div>
+<h4 data-i18n="why-3-title">Visite priv&eacute;e</h4>
+<p data-i18n="why-3-desc">Profitez d&rsquo;une visite personnalis&eacute;e et d&rsquo;un espace de r&eacute;ception &agrave; Erfoud.</p>
+</div>
+
+<div class="why-card">
+<span class="why-card-num">04</span>
+<div class="why-card-icon"><i class="fa-solid fa-heart"></i></div>
+<h4 data-i18n="why-4-title">Accueil chaleureux</h4>
+<p data-i18n="why-4-desc">Notre &eacute;quipe vous r&eacute;serve un accueil digne de l&rsquo;hospitalit&eacute; marocaine.</p>
+</div>
+
+</div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section>
+<div class="section-header">
+<div class="ornament">&loz; &loz; &loz;</div>
+<h2 data-i18n="gal-title">Notre univers en images</h2>
+<p data-i18n="gal-sub">Plongez dans l&rsquo;ambiance de Arts House Maadid</p>
+<div class="section-line"></div>
+</div>
+<div class="gallery-grid">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.18.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.19.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.20.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.203.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.21.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.213.jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.22..jpeg" alt="" loading="lazy">
+<img src="image/WhatsApp Image 2026-05-24 at 18.16.22.jpeg" alt="" loading="lazy">
+</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-inner">
+<div class="footer-grid">
+
+<div class="footer-brand">
+<div class="logo-text">
+Arts House Maadid
+<span data-i18n="logo-sub">Artisanat marocain &bull; Erfoud</span>
+</div>
+<p data-i18n="footer-desc">Espaces traditionnels d&eacute;di&eacute;s &agrave; la pr&eacute;servation et la promotion de l&rsquo;artisanat marocain. Objets du Sahara, c&eacute;ramique, tapis et visites guid&eacute;es.</p>
+</div>
+
+<div>
+<h3 data-i18n="footer-nav-title">Navigation</h3>
+<a href="/" data-i18n="footer-nav-home">Accueil</a>
+<a href="/#galerie" data-i18n="footer-nav-galerie">Galerie</a>
+<a href="/#reservation" data-i18n="footer-nav-reservation">R&eacute;servation</a>
+<a href="contact.html" data-i18n="footer-nav-contact">Contact</a>
+</div>
+
+<div>
+<h3 data-i18n="footer-contact-title">Contact</h3>
+<p>&#128205; <span data-i18n="footer-addr">Erfoud, Maroc</span></p>
+<p><a href="tel:+212662191301">&#128222; +212 6 62 19 13 01</a></p>
+<p><a href="mailto:contact@artshousemaadid.com">&#9993; contact@artshousemaadid.com</a></p>
+</div>
+
+</div>
+<div class="footer-bottom">
+<span data-i18n="footer-copy">&copy; 2026 Arts House Maadid &mdash; Tous droits r&eacute;serv&eacute;s</span>
+<span data-i18n="footer-tag">Artisanat marocain traditionnel</span>
+</div>
+</div>
+</footer>
+
+<!-- ===== TOAST ===== -->
+<div id="toast"></div>
+
+<script>
+// ===== MOBILE MENU =====
+(function(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  if(h){
+    h.addEventListener('click',function(){
+      this.classList.toggle('active');
+      m.classList.toggle('show');
+    });
+    m.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){m.classList.remove('show');h.classList.remove('active');});
+    });
+  }
+})();
+
+// ===== LANGUAGE SWITCHER =====
+(function(){
+  const t = {
+    fr: {
+      'hero-title':'Contactez-nous',
+      'hero-sub':'Nous sommes à votre écoute pour répondre à toutes vos questions et organiser votre expérience authentique au cœur de l\'artisanat marocain.',
+      'card-phone':'Téléphone / WhatsApp',
+      'card-email':'Email',
+      'card-address':'Adresse',
+      'card-address-val':'Erfoud, Maroc',
+      'form-title':'Envoyez-nous un message',
+      'form-sub':'Remplissez le formulaire et nous vous répondrons rapidement.',
+      'form-nom':'Votre nom',
+      'form-email':'Votre email',
+      'form-sujet':'Choisissez un sujet',
+      'form-sujet-reservation':'Réservation',
+      'form-sujet-info':'Demande d\'information',
+      'form-sujet-partenariat':'Partenariat / Agence',
+      'form-sujet-autre':'Autre',
+      'form-message':'Votre message',
+      'form-submit':'Envoyer le message',
+      'why-title':'Pourquoi nous rendre visite ?',
+      'why-sub':'Une expérience unique au cœur de l\'artisanat marocain',
+      'why-1-title':'Expérience authentique',
+      'why-1-desc':'Plongez dans l\'artisanat marocain traditionnel au cœur d\'un espace d\'exception.',
+      'why-2-title':'Produits artisanaux',
+      'why-2-desc':'Découvrez notre collection de pièces uniques faites à la main par des artisans locaux.',
+      'why-3-title':'Visite privée',
+      'why-3-desc':'Profitez d\'une visite personnalisée et d\'un espace de réception à Erfoud.',
+      'why-4-title':'Accueil chaleureux',
+      'why-4-desc':'Notre équipe vous réserve un accueil digne de l\'hospitalité marocaine.',
+      'gal-title':'Notre univers en images',
+      'gal-sub':'Plongez dans l\'ambiance de Arts House Maadid',
+      'logo-sub':'Artisanat marocain • Erfoud',
+      'footer-desc':'Espaces traditionnels dédiés à la préservation et la promotion de l\'artisanat marocain. Objets du Sahara, céramique, tapis et visites guidées.',
+      'footer-nav-title':'Navigation',
+      'footer-nav-home':'Accueil',
+      'footer-nav-galerie':'Galerie',
+      'footer-nav-reservation':'Réservation',
+      'footer-nav-contact':'Contact',
+      'footer-contact-title':'Contact',
+      'footer-addr':'Erfoud, Maroc',
+      'footer-copy':'© 2026 Arts House Maadid — Tous droits réservés',
+      'footer-tag':'Artisanat marocain traditionnel',
+      'toast-ok':'✓ Message envoyé avec succès',
+      'toast-err':'✗ Erreur'
+    },
+    en: {
+      'hero-title':'Contact Us',
+      'hero-sub':'We are here to answer all your questions and organize your authentic experience at the heart of Moroccan craftsmanship.',
+      'card-phone':'Phone / WhatsApp',
+      'card-email':'Email',
+      'card-address':'Address',
+      'card-address-val':'Erfoud, Morocco',
+      'form-title':'Send us a message',
+      'form-sub':'Fill out the form and we will get back to you shortly.',
+      'form-nom':'Your name',
+      'form-email':'Your email',
+      'form-sujet':'Choose a subject',
+      'form-sujet-reservation':'Booking',
+      'form-sujet-info':'Information request',
+      'form-sujet-partenariat':'Partnership / Agency',
+      'form-sujet-autre':'Other',
+      'form-message':'Your message',
+      'form-submit':'Send message',
+      'why-title':'Why visit us?',
+      'why-sub':'A unique experience at the heart of Moroccan craftsmanship',
+      'why-1-title':'Authentic experience',
+      'why-1-desc':'Immerse yourself in traditional Moroccan craftsmanship in an exceptional space.',
+      'why-2-title':'Artisanal products',
+      'why-2-desc':'Discover our collection of unique handmade pieces by local artisans.',
+      'why-3-title':'Private tour',
+      'why-3-desc':'Enjoy a personalized tour and reception space in Erfoud.',
+      'why-4-title':'Warm welcome',
+      'why-4-desc':'Our team welcomes you with true Moroccan hospitality.',
+      'gal-title':'Our world in pictures',
+      'gal-sub':'Immerse yourself in the atmosphere of Arts House Maadid',
+      'logo-sub':'Moroccan crafts • Erfoud',
+      'footer-desc':'Traditional spaces dedicated to preserving and promoting Moroccan craftsmanship. Sahara artifacts, ceramics, rugs and guided tours.',
+      'footer-nav-title':'Navigation',
+      'footer-nav-home':'Home',
+      'footer-nav-galerie':'Gallery',
+      'footer-nav-reservation':'Booking',
+      'footer-nav-contact':'Contact',
+      'footer-contact-title':'Contact',
+      'footer-addr':'Erfoud, Morocco',
+      'footer-copy':'© 2026 Arts House Maadid — All rights reserved',
+      'footer-tag':'Traditional Moroccan craftsmanship',
+      'toast-ok':'✓ Message sent successfully',
+      'toast-err':'✗ Error'
+    },
+    es: {
+      'hero-title':'Contáctenos',
+      'hero-sub':'Estamos aquí para responder a todas sus preguntas y organizar su experiencia auténtica en el corazón de la artesanía marroquí.',
+      'card-phone':'Teléfono / WhatsApp',
+      'card-email':'Correo electrónico',
+      'card-address':'Dirección',
+      'card-address-val':'Erfoud, Marruecos',
+      'form-title':'Envíenos un mensaje',
+      'form-sub':'Complete el formulario y le responderemos pronto.',
+      'form-nom':'Su nombre',
+      'form-email':'Su correo',
+      'form-sujet':'Elija un asunto',
+      'form-sujet-reservation':'Reserva',
+      'form-sujet-info':'Solicitud de información',
+      'form-sujet-partenariat':'Asociación / Agencia',
+      'form-sujet-autre':'Otro',
+      'form-message':'Su mensaje',
+      'form-submit':'Enviar mensaje',
+      'why-title':'¿Por qué visitarnos?',
+      'why-sub':'Una experiencia única en el corazón de la artesanía marroquí',
+      'why-1-title':'Experiencia auténtica',
+      'why-1-desc':'Sumérjase en la artesanía marroquí tradicional en un espacio excepcional.',
+      'why-2-title':'Productos artesanales',
+      'why-2-desc':'Descubra nuestra colección de piezas únicas hechas a mano por artesanos locales.',
+      'why-3-title':'Visita privada',
+      'why-3-desc':'Disfrute de una visita personalizada y espacio de recepción en Erfoud.',
+      'why-4-title':'Cálida bienvenida',
+      'why-4-desc':'Nuestro equipo le recibe con la hospitalidad marroquí.',
+      'gal-title':'Nuestro mundo en imágenes',
+      'gal-sub':'Sumérjase en el ambiente de Arts House Maadid',
+      'logo-sub':'Artesanía marroquí • Erfoud',
+      'footer-desc':'Espacios tradicionales dedicados a la preservación y promoción de la artesanía marroquí. Objetos del Sahara, cerámica, alfombras y visitas guiadas.',
+      'footer-nav-title':'Navegación',
+      'footer-nav-home':'Inicio',
+      'footer-nav-galerie':'Galería',
+      'footer-nav-reservation':'Reserva',
+      'footer-nav-contact':'Contacto',
+      'footer-contact-title':'Contacto',
+      'footer-addr':'Erfoud, Marruecos',
+      'footer-copy':'© 2026 Arts House Maadid — Todos los derechos reservados',
+      'footer-tag':'Artesanía marroquí tradicional',
+      'toast-ok':'✓ Mensaje enviado con éxito',
+      'toast-err':'✗ Error'
+    }
+  };
+  let lang = localStorage.getItem('lang') || 'fr';
+  function apply(l){
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(t[l] && t[l][key]) el.textContent = t[l][key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-placeholder');
+      if(t[l] && t[l][key]) el.placeholder = t[l][key];
+    });
+    document.querySelectorAll('.lang-switch a').forEach(function(b){
+      b.classList.toggle('active', b.dataset.lang === l);
+    });
+  }
+  document.querySelectorAll('.lang-switch a').forEach(function(b){
+    b.addEventListener('click', function(e){e.preventDefault();apply(this.dataset.lang);});
+  });
+  apply(lang);
+})();
+
+// ===== CONTACT FORM =====
+document.getElementById('formContact').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var btn = this.querySelector('.btn-submit');
+  var orig = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+  var fd = new FormData(this);
+  var data = Object.fromEntries(fd);
+  try{
+    var res = await fetch('/api/reservation/normal', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        nom: data.nom,
+        email: data.email,
+        telephone: '',
+        nombre_personnes: '1',
+        date: new Date().toISOString().split('T')[0],
+        experience: data.sujet,
+        message: data.message
+      })
+    });
+    var json = await res.json();
+    if(json.success){
+      var l = localStorage.getItem('lang') || 'fr';
+      showToast(t[l] && t[l]['toast-ok'] ? t[l]['toast-ok'] : '✓ Message envoyé avec succès');
+      this.reset();
+    } else {
+      throw new Error(json.error);
+    }
+  }catch(err){
+    var l = localStorage.getItem('lang') || 'fr';
+    showToast((t[l] && t[l]['toast-err'] ? t[l]['toast-err'] : '✗ Erreur') + ': ' + (err.message || 'Erreur réseau'), true);
+  }finally{
+    btn.disabled = false;
+    btn.textContent = orig;
+  }
+});
+
+function showToast(msg, err){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = err ? 'show error' : 'show';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function(){t.classList.remove('show');}, 3500);
+}
+</script>
+</body>
+</html>
