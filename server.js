@@ -91,7 +91,7 @@ app.get('/api/feedback', async (req, res) => {
   res.json({ success: true, data: result.rows });
 });
 
-app.get('/api/feedback/pending', authMiddleware, async (req, res) => {
+app.get('/api/feedback/admin', authMiddleware, async (req, res) => {
   const result = await db.query("SELECT * FROM feedback ORDER BY created_at DESC");
   res.json({ success: true, data: result.rows });
 });
@@ -99,12 +99,6 @@ app.get('/api/feedback/pending', authMiddleware, async (req, res) => {
 app.put('/api/feedback/:id/approve', authMiddleware, async (req, res) => {
   const id = Number(req.params.id);
   await db.query('UPDATE feedback SET approved = true WHERE id = $1', [id]);
-  res.json({ success: true });
-});
-
-app.put('/api/feedback/:id/reject', authMiddleware, async (req, res) => {
-  const id = Number(req.params.id);
-  await db.query('DELETE FROM feedback WHERE id = $1', [id]);
   res.json({ success: true });
 });
 
